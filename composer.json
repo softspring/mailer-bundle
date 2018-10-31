@@ -1,0 +1,22 @@
+{
+    "name": "softspring/mailer-bundle",
+    "description": "This bundle provides some features that ease mailing for Symfony projects.",
+    "license": "MIT",
+    "type": "symfony-bundle",
+    "require": {
+        "php": "^7.0"
+    },
+    "require-dev": {
+        "symfony/console": "*",
+        "symfony/framework-bundle": "*",
+        "symfony/swiftmailer-bundle": "^3.2",
+        "symfony/translation": "*",
+        "symfony/yaml": "*",
+        "twig/twig": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Softspring\\MailerBundle\\": ""
+        }
+    }
+}

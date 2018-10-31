@@ -1,0 +1,32 @@
+services:
+    Softspring\MailerBundle\Render\TemplateRender:
+        arguments:
+            $twig: '@twig'
+            $translator: '@translator'
+
+    Softspring\MailerBundle\Mailer\TemplateMailer:
+        arguments:
+            $mailer: null
+            $templateLoaders: null
+            $renderer: '@Softspring\MailerBundle\Render\TemplateRender'
+            $defaultFromEmail: '%sfs_mailer.from_email.address%'
+            $defaultFromName: '%sfs_mailer.from_email.sender_name%'
+
+    sfs_mailer:
+        alias: 'Softspring\MailerBundle\Mailer\TemplateMailer'
+        public: true
+
+    Softspring\MailerBundle\Loader\ParameterTemplateLoader:
+        arguments:
+            $templatesConfig: '%sfs_mailer.templates%'
+        tags: ['sfs_mailer.template_loader']
+
+    Softspring\MailerBundle\Command\ListTemplatesCommand:
+        arguments:
+            $templateMailer: '@Softspring\MailerBundle\Mailer\TemplateMailer'
+        tags: ['console.command']
+
+    Softspring\MailerBundle\Command\SendTemplateCommand:
+        arguments:
+            $templateMailer: '@Softspring\MailerBundle\Mailer\TemplateMailer'
+        tags: ['console.command']
