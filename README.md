@@ -83,21 +83,21 @@ sfs_mailer:
 ## By configuration
 
 ```yaml
-    # config/package/sfs_mailer.yaml
-    sfs_mailer:
-        templates:
-            user_resetting:
-                template: "@FOSUser/Resetting/email.txt.twig"
-                html_block: body_html  # html by default
-                text_block: body_text  # text by default
-                subject_block: subject # default value
-                from_email:
-                    sender_name: "My Application custom from"
-                    address: "custom-from@myapplication.com"
-                example_context:
-                    user:
-                        username: myusername
-                    confirmationUrl: "https://myapplication.com/resetting?code=123456879"
+# config/package/sfs_mailer.yaml
+sfs_mailer:
+    templates:
+        user_resetting:
+            template: "@FOSUser/Resetting/email.txt.twig"
+            html_block: body_html  # html by default
+            text_block: body_text  # text by default
+            subject_block: subject # default value
+            from_email:
+                sender_name: "My Application custom from"
+                address: "custom-from@myapplication.com"
+            example_context:
+                user:
+                    username: myusername
+                confirmationUrl: "https://myapplication.com/resetting?code=123456879"
 ```                   
                  
 ## Creating a loader service
@@ -135,7 +135,7 @@ class MyCustomTemplateLoader implements TemplateLoaderInterface
 Configure your service and tag it as *sfs_mailer.template.loader*:   
    
 ```yaml     
-    services:
-        App\Mailer\Loader\MyCustomTemplateLoader:
-           tags: ['sfs_mailer.template_loader']                  
+services:
+    App\Mailer\Loader\MyCustomTemplateLoader:
+       tags: ['sfs_mailer.template_loader']                  
 ```          
