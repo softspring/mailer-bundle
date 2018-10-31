@@ -36,7 +36,7 @@ class Configuration implements ConfigurationInterface
                                     ->scalarNode('address')->end()
                                 ->end()
                             ->end()
-                            ->arrayNode('example_context')->end()
+                            ->arrayNode('example_context')->prototype('variable')->end()->end()
                         ->end()
                     ->end()
                 ->end()
