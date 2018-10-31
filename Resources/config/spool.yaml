@@ -1,0 +1,29 @@
+services:
+    Softspring\MailerBundle\EventListener\MessageSendingEventListener:
+        arguments:
+            $em: '@doctrine.orm.entity_manager'
+        tags: ['kernel.event_subscriber']
+
+    Softspring\MailerBundle\EventListener\MessageFailedEventListener:
+        arguments:
+            $em: '@doctrine.orm.entity_manager'
+            $removeFailed: '%sfs_mailer.spool.remove_failed%'
+        tags: ['kernel.event_subscriber']
+
+    Softspring\MailerBundle\EventListener\MessageSentEventListener:
+        arguments:
+            $em: '@doctrine.orm.entity_manager'
+            $removeSent: '%sfs_mailer.spool.remove_sent%'
+        tags: ['kernel.event_subscriber']
+
+    Softspring\MailerBundle\Spool\DatabaseSpool:
+        arguments:
+            $em: '@doctrine.orm.entity_manager'
+            $class: '%sfs_mailer.spool.entity_class%'
+            $dispatcher: '@event_dispatcher'
+
+    siwftmailer.spool.sfs_mailer_db:
+        alias: 'Softspring\MailerBundle\Spool\DatabaseSpool'
+
+    swiftmailer.mailer.default.spool.sfs_mailer_db:
+        alias: 'Softspring\MailerBundle\Spool\DatabaseSpool'

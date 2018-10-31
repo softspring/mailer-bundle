@@ -40,6 +40,15 @@ class Configuration implements ConfigurationInterface
                         ->end()
                     ->end()
                 ->end()
+
+                ->arrayNode('spool')
+                    ->canBeEnabled()
+                    ->children()
+                        ->scalarNode('entity_class')->cannotBeEmpty()->defaultValue('App\\Entity\\EmailSpool')->end()
+                        ->booleanNode('remove_sent')->defaultFalse()->end()
+                        ->booleanNode('remove_failed')->defaultFalse()->end()
+                    ->end()
+                ->end()
             ->end()
         ;
 

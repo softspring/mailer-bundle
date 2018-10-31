@@ -78,14 +78,13 @@ class TemplateMailer
     {
         $template = $this->templateCollection->getTemplate($templateId);
 
+        if (!$template || !$this->renderer->templateExists($template)) {
+            throw new InvalidTemplateException(sprintf('Template %s was not found.', $template ? $template->getTwigTemplate() : $templateId));
+        }
+
         if ($context === null) {
             $context = $template->getExampleContext();
         }
-
-        if (!$template || !$this->renderer->templateExists($template)) {
-            throw new InvalidTemplateException(sprintf('Template %s was not found.', $template->getTwigTemplate()));
-        }
-
 
         if (!$this->renderer->hasSubjectBlock($template)) {
             throw new InvalidTemplateException(sprintf('Template %s has not subject block (named by configuration as %s).', $template->getTwigTemplate(), $template->getSubjectBlockName()));
@@ -103,7 +102,8 @@ class TemplateMailer
 
         $subject = $this->renderer->renderSubject($template, $context, $locale);
 
-        $message = (new \Swift_Message())
+        $message = (new TemplateMessage())
+            ->setTemplate($template)
             ->setSubject($subject)
             ->setFrom($fromEmail, $fromName)
             ->setTo($toEmail, $toName);
