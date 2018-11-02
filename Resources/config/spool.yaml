@@ -22,7 +22,7 @@ services:
             $class: '%sfs_mailer.spool.entity_class%'
             $dispatcher: '@event_dispatcher'
 
-    siwftmailer.spool.sfs_mailer_db:
+    swiftmailer.spool.sfs_mailer_db:
         alias: 'Softspring\MailerBundle\Spool\DatabaseSpool'
 
     swiftmailer.mailer.default.spool.sfs_mailer_db:

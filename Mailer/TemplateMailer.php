@@ -74,7 +74,7 @@ class TemplateMailer
      * @throws InvalidTemplateException
      * @throws TemplateRenderException
      */
-    public function send(string $templateId, string $locale, ?array $context, string $toEmail, ?string $toName, ?string $fromEmail, ?string $fromName)
+    public function send(string $templateId, string $locale, ?array $context, string $toEmail, ?string $toName = null, ?string $fromEmail = null, ?string $fromName = null)
     {
         $template = $this->templateCollection->getTemplate($templateId);
 

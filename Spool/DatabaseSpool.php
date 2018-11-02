@@ -131,7 +131,7 @@ class DatabaseSpool extends Swift_ConfigurableSpool
     {
         $collection = $this->getRepository()->findBy([
             'status' => EmailSpoolInterface::STATUS_PENDING,
-        ], [], $limit ?? null);
+        ], [], $limit != 0 ? $limit : null);
 
         return $collection;
     }
