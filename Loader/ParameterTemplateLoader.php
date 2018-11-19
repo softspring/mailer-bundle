@@ -35,6 +35,8 @@ class ParameterTemplateLoader implements TemplateLoaderInterface
             $template->setHtmlBlockName($templateConfig['html_block']);
             $template->setTextBlockName($templateConfig['text_block']);
             $template->setExampleContext($templateConfig['example_context']);
+            $template->setFromName($templateConfig['from_email']['sender_name']);
+            $template->setFromEmail($templateConfig['from_email']['address']);
 
             $collection->addTemplate($template);
         }
