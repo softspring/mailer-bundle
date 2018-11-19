@@ -2,6 +2,7 @@
 
 namespace Softspring\MailerBundle\Spool;
 
+use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Persistence\ObjectRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Softspring\MailerBundle\Event\EmailSpoolEvent;
@@ -129,11 +130,12 @@ class DatabaseSpool extends Swift_ConfigurableSpool
      */
     public function getPendingMessages(int $limit = 0): array
     {
+        /** @var Collection $collection */
         $collection = $this->getRepository()->findBy([
             'status' => EmailSpoolInterface::STATUS_PENDING,
         ], [], $limit != 0 ? $limit : null);
 
-        return $collection;
+        return $collection->toArray();
     }
 
     /**
