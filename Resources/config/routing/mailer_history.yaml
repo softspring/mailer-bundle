@@ -1,0 +1,10 @@
+sfs_mailer_history_search:
+    defaults:
+        _controller: Softspring\MailerBundle\Controller\MailerHistoryController::search
+    path: /
+
+sfs_mailer_history_details:
+    defaults:
+        _controller: Softspring\MailerBundle\Controller\MailerHistoryController::details
+    path: /{messageId}
+

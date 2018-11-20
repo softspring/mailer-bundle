@@ -102,4 +102,64 @@ abstract class EmailSpoolSuperclass implements EmailSpoolInterface
     {
         $this->templateId = $templateId;
     }
+
+    public function getMessageSubject(): ?string
+    {
+        return trim($this->getMessage()->getSubject()) ?? null;
+    }
+
+    public function getMessageFrom(): ?array
+    {
+        return $this->getMessage()->getFrom() ?? null;
+    }
+
+    public function getMessageTo(): ?array
+    {
+        return $this->getMessage()->getTo() ?? null;
+    }
+
+    public function getMessageReplyTo(): ?string
+    {
+        return $this->getMessage()->getReplyTo() ?? null;
+    }
+
+    public function getMessageDate(): ?\DateTimeInterface
+    {
+        return $this->getMessage()->getDate() ?? null;
+    }
+
+    public function getMessageBody(): ?string
+    {
+        if (!$this->getMessage() instanceof Swift_Mime_SimpleMessage) {
+            return null;
+        }
+
+        return $this->getMessage()->getBody();
+    }
+
+    public function getMessageBodyHtml(): ?string
+    {
+        if (!$this->getMessage() instanceof Swift_Mime_SimpleMessage) {
+            return null;
+        }
+
+        if ($this->getMessage()->getBodyContentType() == 'text/html') {
+            return $this->getMessage()->getBody();
+        }
+
+        return null;
+    }
+
+    public function getMessageBodyText(): ?string
+    {
+        if (!$this->getMessage() instanceof Swift_Mime_SimpleMessage) {
+            return null;
+        }
+
+        if ($this->getMessage()->getBodyContentType() == 'text/plain') {
+            return $this->getMessage()->getBody();
+        }
+
+        return null;
+    }
 }

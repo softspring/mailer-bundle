@@ -1,0 +1,28 @@
+{% trans_default_domain 'sfs_mailer_bundle' %}
+{% extends '@SfsMailer/layout.html.twig' %}
+
+{% block mailer_content %}
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">{{ 'history.fields.subject.header'|trans }}</th>
+            <th scope="col">{{ 'history.fields.to.header'|trans }}</th>
+            <th scope="col">{{ 'history.fields.from.header'|trans }}</th>
+            <th scope="col">{{ 'history.fields.date.header'|trans }}</th>
+            <th scope="col">{{ 'history.fields.status.header'|trans }}</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        {% for mail in mails %}
+            <tr>
+                <td><a href="{{ url('sfs_mailer_history_details', {'messageId': mail.id}) }}">{{ mail.messageSubject }}</a></td>
+                <td>{{ mail.messageTo|keys|join(',') }}</td>
+                <td>{{ mail.messageFrom|keys|join(',') }}</td>
+                <td>{{ mail.messageDate|date('H:i d-m-Y') }}</td>
+                <td>{{ ('message.status.values.'~mail.status)|trans }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock mailer_content %}

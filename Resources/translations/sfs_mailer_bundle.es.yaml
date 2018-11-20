@@ -1,0 +1,15 @@
+history:
+    fields:
+        subject.header: "Asunto"
+        to.header: "Para"
+        from.header: "De"
+        date.header: "Fecha envío"
+        status.header: "Estado"
+
+message:
+    status:
+        values:
+            1: "Pendiente"
+            2: "Enviando"
+            3: "Enviado"
+            4: "Error"
