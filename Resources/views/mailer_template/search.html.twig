@@ -1,0 +1,24 @@
+{% trans_default_domain 'sfs_mailer_bundle' %}
+{% extends '@SfsMailer/layout.html.twig' %}
+
+{% block mailer_content %}
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">{{ 'templates.fields.id.header'|trans }}</th>
+            <th scope="col">{{ 'templates.fields.name.header'|trans }}</th>
+            <th scope="col">{{ 'templates.fields.twigTemplate.header'|trans }}</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        {% for template in templates %}
+            <tr>
+                <td><a href="{{ url('sfs_mailer_templates_test', {'templateId':template.id}) }}">{{ template.id }}</a></td>
+                <td>{{ template.name }}</td>
+                <td>{{ template.twigTemplate }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock mailer_content %}

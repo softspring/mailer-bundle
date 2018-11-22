@@ -6,6 +6,12 @@ history:
         date.header: "Fecha envío"
         status.header: "Estado"
 
+templates:
+    fields:
+        id.header: "ID"
+        name.header: "Nombre"
+        twigTemplate.header: "Plantilla"
+
 message:
     status:
         values:
