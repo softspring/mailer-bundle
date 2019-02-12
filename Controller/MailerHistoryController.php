@@ -34,6 +34,6 @@ class MailerHistoryController extends Controller
 
     protected function getEntityClass(): string
     {
-        return $this->getParameter('sfs_mailer.spool.entity_class');
+        return $this->getParameter('sfs_mailer.spool.class');
     }
 }

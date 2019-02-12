@@ -160,7 +160,7 @@ Default configuration is:
 sfs_mailer:
     spool:
         enabled: false
-        entity_class: 'App\Entity\EmailSpool'
+        class: 'Softspring\MailerBundle\Entity\EmailSpool'
         remove_sent: false
         remove_failed: false
 ```

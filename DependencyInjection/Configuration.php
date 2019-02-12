@@ -2,6 +2,7 @@
 
 namespace Softspring\MailerBundle\DependencyInjection;
 
+use Softspring\MailerBundle\Entity\EmailSpool;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
@@ -44,7 +45,7 @@ class Configuration implements ConfigurationInterface
                 ->arrayNode('spool')
                     ->canBeEnabled()
                     ->children()
-                        ->scalarNode('entity_class')->cannotBeEmpty()->defaultValue('App\\Entity\\EmailSpool')->end()
+                        ->scalarNode('class')->cannotBeEmpty()->defaultValue(EmailSpool::class)->end()
                         ->booleanNode('remove_sent')->defaultFalse()->end()
                         ->booleanNode('remove_failed')->defaultFalse()->end()
                     ->end()

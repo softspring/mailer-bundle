@@ -1,39 +1,31 @@
 <?php
 
-namespace Softspring\MailerBundle\Entity;
+namespace Softspring\MailerBundle\Model;
 
-use Doctrine\ORM\Mapping as ORM;
-use Softspring\MailerBundle\Model\EmailSpoolInterface;
 use Swift_Mime_SimpleMessage;
 
 /**
- * @ORM\MappedSuperclass()
+ * Class EmailSpool
  */
-abstract class EmailSpoolSuperclass implements EmailSpoolInterface
+class EmailSpool implements EmailSpoolInterface
 {
     /**
      * @var string|null
-     * @ORM\Column(name="id", type="guid")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="UUID")
      */
     protected $id;
 
     /**
      * @var int|null
-     * @ORM\Column(name="status", type="smallint", nullable=false, options={"unsigned":true})
      */
     protected $status = EmailSpoolInterface::STATUS_PENDING;
 
     /**
      * @var string|null
-     * @ORM\Column(name="template_id", type="string", nullable=true)
      */
     protected $templateId;
 
     /**
      * @var Swift_Mime_SimpleMessage|null
-     * @ORM\Column(name="message", type="text", nullable=false)
      */
     protected $message;
 

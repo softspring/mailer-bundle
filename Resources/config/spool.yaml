@@ -19,7 +19,7 @@ services:
     Softspring\MailerBundle\Spool\DatabaseSpool:
         arguments:
             $em: '@doctrine.orm.entity_manager'
-            $class: '%sfs_mailer.spool.entity_class%'
+            $class: '%sfs_mailer.spool.class%'
             $dispatcher: '@event_dispatcher'
 
     swiftmailer.spool.sfs_mailer_db:
