@@ -10,8 +10,8 @@ class Configuration implements ConfigurationInterface
 {
     public function getConfigTreeBuilder()
     {
-        $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('sfs_mailer');
+        $treeBuilder = new TreeBuilder('sfs_mailer');
+        $rootNode = $treeBuilder->getRootNode();
 
         $rootNode
             ->children()

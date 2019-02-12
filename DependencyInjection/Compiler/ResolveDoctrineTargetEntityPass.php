@@ -14,12 +14,13 @@ class ResolveDoctrineTargetEntityPass implements CompilerPassInterface
      */
     public function process(ContainerBuilder $container)
     {
-        $historyConfig = $container->getParameter('sfs_user.history.config');
-        if ($historyConfig['enabled']) {
-            if (!class_implements($historyConfig['class'], EmailSpoolInterface::class)) {
-                throw new LogicException(sprintf('%s class must implements %s interface', $historyConfig['class'], EmailSpoolInterface::class));
+        if ($container->hasParameter('sfs_mailer.spool.class')) {
+            $emailSpoolClass = $container->getParameter('sfs_mailer.spool.class');
+
+            if (!class_implements($emailSpoolClass, EmailSpoolInterface::class)) {
+                throw new LogicException(sprintf('%s class must implements %s interface', $emailSpoolClass, EmailSpoolInterface::class));
             }
-            $this->setTargetEntity($container, EmailSpoolInterface::class, $historyConfig['class']);
+            $this->setTargetEntity($container, EmailSpoolInterface::class, $emailSpoolClass);
         }
     }
 
