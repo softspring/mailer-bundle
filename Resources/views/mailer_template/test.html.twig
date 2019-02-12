@@ -1,8 +1,8 @@
 {% trans_default_domain 'sfs_mailer_bundle' %}
 {% extends '@SfsMailer/layout.html.twig' %}
 
-{% block mailer_content %}
+{% block content %}
     {{ form_start(form) }}
     {{ form_rest(form) }}
     {{ form_end(form) }}
-{% endblock mailer_content %}
+{% endblock content %}

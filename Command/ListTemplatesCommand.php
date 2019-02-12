@@ -4,11 +4,11 @@ namespace Softspring\MailerBundle\Command;
 
 use Softspring\MailerBundle\Mailer\TemplateMailer;
 use Softspring\MailerBundle\Model\Template;
-use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class ListTemplatesCommand extends ContainerAwareCommand
+class ListTemplatesCommand extends Command
 {
     /**
      * @var TemplateMailer

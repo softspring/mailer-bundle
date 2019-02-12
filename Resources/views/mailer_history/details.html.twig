@@ -1,7 +1,7 @@
 {% trans_default_domain 'sfs_mailer_bundle' %}
 {% extends '@SfsMailer/layout.html.twig' %}
 
-{% block mailer_content %}
+{% block content %}
     <p>{{ mail.templateId }}</p>
     <p>{{ mail.messageSubject }}</p>
     <p>{{ mail.messageTo|keys|join(',') }}</p>
@@ -11,4 +11,4 @@
 
     {#<p>{{ mail.messageBodyText }}</p>#}
     <div class="border p-3 bg-light">{{ mail.messageBodyHtml|raw }}</div>
-{% endblock mailer_content %}
+{% endblock content %}

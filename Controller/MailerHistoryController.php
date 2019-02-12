@@ -3,11 +3,12 @@
 namespace Softspring\MailerBundle\Controller;
 
 use Doctrine\ORM\EntityRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Softspring\MailerBundle\Model\EmailSpoolInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class MailerHistoryController extends Controller
+class MailerHistoryController extends AbstractController
 {
     public function search(Request $request): Response
     {
@@ -29,11 +30,6 @@ class MailerHistoryController extends Controller
 
     protected function getRepository(): EntityRepository
     {
-        return $this->getDoctrine()->getRepository($this->getEntityClass());
-    }
-
-    protected function getEntityClass(): string
-    {
-        return $this->getParameter('sfs_mailer.spool.class');
+        return $this->getDoctrine()->getRepository(EmailSpoolInterface::class);
     }
 }

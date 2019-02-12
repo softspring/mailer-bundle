@@ -4,13 +4,13 @@ namespace Softspring\MailerBundle\Controller;
 
 use Softspring\MailerBundle\Model\Template;
 use Softspring\MailerBundle\Model\TemplateCollection;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\HttpFoundation\Response;
 
-class MailerTemplateController extends Controller
+class MailerTemplateController extends AbstractController
 {
     public function search(): Response
     {
