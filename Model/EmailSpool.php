@@ -30,6 +30,16 @@ class EmailSpool implements EmailSpoolInterface
     protected $message;
 
     /**
+     * @var int
+     */
+    protected $createdAt;
+
+    /**
+     * @var int
+     */
+    protected $lastStatusAt;
+
+    /**
      * @return string
      */
     public function __toString()
@@ -153,5 +163,37 @@ class EmailSpool implements EmailSpoolInterface
         }
 
         return null;
+    }
+
+    /**
+     * @return \DateTime|null
+     */
+    public function getCreatedAt(): ?\DateTime
+    {
+        return \DateTime::createFromFormat("U", $this->createdAt) ?: null;
+    }
+
+    /**
+     * @param \DateTime|null $createdAt
+     */
+    public function setCreatedAt(?\DateTime $createdAt): void
+    {
+        $this->createdAt = $createdAt instanceof \DateTime ? $createdAt->format('U') : null;
+    }
+
+    /**
+     * @return \DateTime|null
+     */
+    public function getLastStatusAt(): ?\DateTime
+    {
+        return \DateTime::createFromFormat("U", $this->lastStatusAt) ?: null;
+    }
+
+    /**
+     * @param \DateTime|null $lastStatusAt
+     */
+    public function setLastStatusAt(?\DateTime $lastStatusAt): void
+    {
+        $this->lastStatusAt = $lastStatusAt instanceof \DateTime ? $lastStatusAt->format('U') : null;
     }
 }

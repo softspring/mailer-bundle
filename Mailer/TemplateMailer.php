@@ -94,7 +94,7 @@ class TemplateMailer
         $hasText = $this->renderer->hasTextBlock($template);
 
         if (!$hasHtml && !$hasText) {
-            throw new InvalidTemplateException(sprintf('Template %s has not html or text blocks (named by configuration as %s %s respectively).', $template->getTwigTemplate(), $template->getHtmlBlockName()), $template->getTextBlockName());
+            throw new InvalidTemplateException(sprintf('Template %s has not html or text blocks (named by configuration as %s %s respectively).', $template->getTwigTemplate(), $template->getHtmlBlockName(), $template->getTextBlockName()));
         }
 
         $fromEmail = $fromEmail ?? $template->getFromEmail() ?? $this->defaultFromEmail;

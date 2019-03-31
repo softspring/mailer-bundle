@@ -47,4 +47,14 @@ interface EmailSpoolInterface
      * @param string $templateId
      */
     public function setTemplateId(?string $templateId): void;
+
+    /**
+     * @return \DateTime|null
+     */
+    public function getCreatedAt(): ?\DateTime;
+
+    /**
+     * @param \DateTime|null $createdAt
+     */
+    public function setCreatedAt(?\DateTime $createdAt): void;
 }

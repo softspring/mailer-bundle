@@ -1,5 +1,6 @@
 history:
     fields:
+        id.header: "ID"
         subject.header: "Asunto"
         to.header: "Para"
         from.header: "De"

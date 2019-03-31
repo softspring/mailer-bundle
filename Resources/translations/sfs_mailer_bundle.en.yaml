@@ -1,0 +1,22 @@
+history:
+    fields:
+        id.header: "ID"
+        subject.header: "Subject"
+        to.header: "To"
+        from.header: "From"
+        date.header: "Sent date"
+        status.header: "Status"
+
+templates:
+    fields:
+        id.header: "ID"
+        name.header: "Name"
+        twigTemplate.header: "Template"
+
+message:
+    status:
+        values:
+            1: "Pending"
+            2: "Sending"
+            3: "Sent"
+            4: "Error"

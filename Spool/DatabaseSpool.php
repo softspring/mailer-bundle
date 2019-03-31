@@ -76,6 +76,7 @@ class DatabaseSpool extends Swift_ConfigurableSpool
         $emailSpool = new $this->class;
         $emailSpool->setStatus(EmailSpoolInterface::STATUS_PENDING);
         $emailSpool->setMessage($message);
+        $emailSpool->setCreatedAt(new \DateTime('now'));
 
         if ($message instanceof TemplateMessage) {
             $emailSpool->setTemplateId($message->getTemplate()->getId());
@@ -135,7 +136,7 @@ class DatabaseSpool extends Swift_ConfigurableSpool
             'status' => EmailSpoolInterface::STATUS_PENDING,
         ], [], $limit != 0 ? $limit : null);
 
-        return $collection->toArray();
+        return $collection instanceof Collection ? $collection->toArray() : (array) $collection;
     }
 
     /**

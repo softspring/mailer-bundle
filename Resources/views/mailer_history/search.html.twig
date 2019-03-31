@@ -5,6 +5,7 @@
     <table class="table">
         <thead>
         <tr>
+            <th scope="col">{{ 'history.fields.id.header'|trans }}</th>
             <th scope="col">{{ 'history.fields.subject.header'|trans }}</th>
             <th scope="col">{{ 'history.fields.to.header'|trans }}</th>
             <th scope="col">{{ 'history.fields.from.header'|trans }}</th>
@@ -16,7 +17,8 @@
         <tbody>
         {% for mail in mails %}
             <tr>
-                <td><a href="{{ url('sfs_mailer_history_details', {'messageId': mail.id}) }}">{{ mail.messageSubject }}</a></td>
+                <td><a href="{{ url('sfs_mailer_history_details', {'messageId': mail.id}) }}">{{ mail.id }}</a></td>
+                <td>{{ mail.messageSubject }}</td>
                 <td>{{ mail.messageTo|keys|join(',') }}</td>
                 <td>{{ mail.messageFrom|keys|join(',') }}</td>
                 <td>{{ mail.messageDate|date('H:i d-m-Y') }}</td>
