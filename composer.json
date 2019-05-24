@@ -18,5 +18,10 @@
         "psr-4": {
             "Softspring\\MailerBundle\\": ""
         }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
     }
 }
