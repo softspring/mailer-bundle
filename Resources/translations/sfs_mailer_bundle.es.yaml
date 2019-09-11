@@ -2,6 +2,7 @@ history:
     fields:
         id.header: "ID"
         subject.header: "Asunto"
+        templateId.header: "Plantilla"
         to.header: "Para"
         from.header: "De"
         date.header: "Fecha envío"

@@ -1,5 +1,5 @@
 {% trans_default_domain 'sfs_mailer_bundle' %}
-{% extends '@SfsMailer/layout.html.twig' %}
+{% extends '@SfsMailer/admin_layout.html.twig' %}
 
 {% block content %}
     <table class="table">
@@ -14,7 +14,7 @@
         <tbody>
         {% for template in templates %}
             <tr>
-                <td><a href="{{ url('sfs_mailer_templates_test', {'templateId':template.id}) }}">{{ template.id }}</a></td>
+                <td><a href="{{ url('sfs_mailer_templates_test', {'templateId':template.id}) }}">{{ template.id|trans }}</a></td>
                 <td>{{ template.name }}</td>
                 <td>{{ template.twigTemplate }}</td>
             </tr>

@@ -1,27 +1,58 @@
 <?php
 
-namespace Softspring\MailerBundle\Controller;
+namespace Softspring\MailerBundle\Controller\Admin;
 
+use Softspring\MailerBundle\Mailer\TemplateMailer;
 use Softspring\MailerBundle\Model\Template;
 use Softspring\MailerBundle\Model\TemplateCollection;
+use Softspring\User\Model\UserInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class MailerTemplateController extends AbstractController
 {
+    /**
+     * @var string
+     */
+    protected $senderName;
+
+    /**
+     * @var string
+     */
+    protected $senderEmail;
+
+    /**
+     * @var TemplateMailer
+     */
+    protected $templateMailer;
+
+    /**
+     * MailerTemplateController constructor.
+     * @param string $senderName
+     * @param string $senderEmail
+     * @param TemplateMailer $templateMailer
+     */
+    public function __construct(string $senderName, string $senderEmail, TemplateMailer $templateMailer)
+    {
+        $this->senderName = $senderName;
+        $this->senderEmail = $senderEmail;
+        $this->templateMailer = $templateMailer;
+    }
+
     public function search(): Response
     {
         $templates = $this->getCollection()->getTemplates();
 
-        return $this->render('@SfsMailer/mailer_template/search.html.twig', [
+        return $this->render('@SfsMailer/admin/mailer_template/search.html.twig', [
             'templates' => $templates,
         ]);
     }
 
-    public function test(string $templateId): Response
+    public function test(string $templateId, Request $request): Response
     {
         $template = $this->getTemplate($templateId);
 
@@ -29,13 +60,18 @@ class MailerTemplateController extends AbstractController
             return $this->redirectToRoute('sfs_mailer_history_search');
         }
 
-        $form = $this->createTestForm($template);
+        $form = $this->createTestForm($template)->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $formData = $form->getData();
+            list ('toEmail' => $toEmail, 'toName' => $toName, 'fromEmail' => $fromEmail, 'fromName' => $fromName) = $formData;
+            $context = array_slice($formData, 4);
+            $this->templateMailer->send($templateId, 'es', $context, $toEmail, $toName, $fromEmail, $fromName);
 
+            return $this->redirectToRoute('sfs_mailer_templates_search');
         }
 
-        return $this->render('@SfsMailer/mailer_template/test.html.twig', [
+        return $this->render('@SfsMailer/admin/mailer_template/test.html.twig', [
             'template' => $template,
             'form' => $form->createView(),
         ]);
@@ -44,11 +80,14 @@ class MailerTemplateController extends AbstractController
 
     protected function createTestForm(Template $template)
     {
+        /** @var UserInterface $user */
+        $user = $this->getUser();
+
         $data = [
-            'toEmail' => '',
-            'toName' => '',
-            'fromEmail' => $template->getFromEmail(),
-            'fromName' => $template->getFromName(),
+            'toEmail' => $user->getEmail(),
+            'toName' => method_exists($user, 'getName') ? $user->getName() : '',
+            'fromEmail' => $template->getFromEmail() ?? $this->senderEmail,
+            'fromName' => $template->getFromName() ?? $this->senderName,
         ];
 
         $formBuilder = $this->createFormBuilder();

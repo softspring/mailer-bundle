@@ -1,6 +1,6 @@
 <?php
 
-namespace Softspring\MailerBundle\Controller;
+namespace Softspring\MailerBundle\Controller\Admin;
 
 use Doctrine\ORM\EntityRepository;
 use Softspring\MailerBundle\Model\EmailSpoolInterface;
@@ -12,9 +12,9 @@ class MailerHistoryController extends AbstractController
 {
     public function search(Request $request): Response
     {
-        $mails = $this->getRepository()->findBy([]);
+        $mails = $this->getRepository()->findBy([], ['createdAt' => 'DESC']);
 
-        return $this->render('@SfsMailer/mailer_history/search.html.twig', [
+        return $this->render('@SfsMailer/admin/mailer_history/search.html.twig', [
             'mails' => $mails,
         ]);
     }
@@ -23,7 +23,7 @@ class MailerHistoryController extends AbstractController
     {
         $mail = $this->getRepository()->findOneById($messageId);
 
-        return $this->render('@SfsMailer/mailer_history/details.html.twig', [
+        return $this->render('@SfsMailer/admin/mailer_history/details.html.twig', [
             'mail' => $mail,
         ]);
     }

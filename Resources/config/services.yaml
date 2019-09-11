@@ -1,4 +1,12 @@
 services:
+    Softspring\MailerBundle\Controller\Admin\MailerTemplateController:
+        public: true
+        arguments:
+            $senderName: '%sfs_mailer.from_email.sender_name%'
+            $senderEmail: '%sfs_mailer.from_email.address%'
+            $templateMailer: '@Softspring\MailerBundle\Mailer\TemplateMailer'
+        tags: ['controller.service_arguments']
+
     Softspring\MailerBundle\Render\TemplateRender:
         arguments:
             $twig: '@twig'
