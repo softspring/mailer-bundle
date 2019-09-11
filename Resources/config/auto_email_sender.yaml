@@ -1,0 +1,8 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    Softspring\MailerBundle\EventListener\EmailSenderListener:
+        tags: ['kernel.event_subscriber']

@@ -43,6 +43,10 @@ class SfsMailerExtension extends Extension implements PrependExtensionInterface
 
             $loader->load('spool.yaml');
         }
+
+        if ($config['auto_send']) {
+            $loader->load('auto_email_sender.yaml');
+        }
     }
 
     public function prepend(ContainerBuilder $container)

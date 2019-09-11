@@ -16,6 +16,7 @@ class Configuration implements ConfigurationInterface
         $rootNode
             ->children()
                 ->scalarNode('mailer')->defaultValue('swiftmailer.mailer')->cannotBeEmpty()->end()
+                ->booleanNode('auto_send')->defaultFalse()->end()
                 ->arrayNode('from_email')
                     ->children()
                         ->scalarNode('sender_name')->end()
