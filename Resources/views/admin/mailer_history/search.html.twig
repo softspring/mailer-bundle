@@ -2,6 +2,10 @@
 {% extends '@SfsMailer/admin_layout.html.twig' %}
 
 {% block content %}
+    <div class="text-right">
+        <a href="{{ url('sfs_mailer_send_spool') }}">Send spool now</a>
+    </div>
+
     <table class="table">
         <thead>
         <tr>
