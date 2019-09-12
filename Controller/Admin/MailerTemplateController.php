@@ -4,8 +4,7 @@ namespace Softspring\MailerBundle\Controller\Admin;
 
 use Softspring\MailerBundle\Mailer\TemplateMailer;
 use Softspring\MailerBundle\Model\Template;
-use Softspring\MailerBundle\Model\TemplateCollection;
-use Softspring\User\Model\UserInterface;
+use Softspring\UserBundle\Model\UserInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -45,7 +44,7 @@ class MailerTemplateController extends AbstractController
 
     public function search(): Response
     {
-        $templates = $this->getCollection()->getTemplates();
+        $templates = $this->templateMailer->getTemplateCollection()->getTemplates();
 
         return $this->render('@SfsMailer/admin/mailer_template/search.html.twig', [
             'templates' => $templates,
@@ -54,7 +53,7 @@ class MailerTemplateController extends AbstractController
 
     public function test(string $templateId, Request $request): Response
     {
-        $template = $this->getTemplate($templateId);
+        $template = $this->templateMailer->getTemplateCollection()->getTemplate($templateId);
 
         if (!$template) {
             return $this->redirectToRoute('sfs_mailer_history_search');
@@ -122,15 +121,5 @@ class MailerTemplateController extends AbstractController
             $formBuilder->add($key, TextType::class);
             $data[$key] = $value;
         }
-    }
-
-    protected function getTemplate(string $templateId): ?Template
-    {
-        return $this->getCollection()->getTemplate($templateId);
-    }
-
-    protected function getCollection(): TemplateCollection
-    {
-        return $this->get('sfs_mailer')->getTemplateCollection();
     }
 }
