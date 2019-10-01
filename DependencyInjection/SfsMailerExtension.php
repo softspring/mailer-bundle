@@ -8,7 +8,6 @@ use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
 use Symfony\Component\Config\Definition\Processor;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\Exception\InvalidArgumentException;
 use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
@@ -30,6 +29,7 @@ class SfsMailerExtension extends Extension implements PrependExtensionInterface
 
         $loader->load('services.yaml');
 
+        $container->setParameter('sfs_mailer.spool.enabled', $config['spool']['enabled'] ?? false);
         if ($config['spool']['enabled'] ?? false) {
             if (!in_array(EmailSpoolInterface::class, class_implements($config['spool']['class']))) {
                 throw new InvalidConfigurationException('sfs_mailer.spool.class must implements '.EmailSpoolInterface::class);

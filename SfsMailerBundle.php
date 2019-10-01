@@ -16,7 +16,7 @@ class SfsMailerBundle extends Bundle
 
         $basePath = realpath(__DIR__.'/Resources/config/doctrine-mapping/');
 
-        $this->addRegisterMappingsPass($container, [$basePath.'/model' => 'Softspring\MailerBundle\Model']);
+        $this->addRegisterMappingsPass($container, [$basePath.'/model' => 'Softspring\MailerBundle\Model'], 'sfs_mailer.spool.enabled');
         $this->addRegisterMappingsPass($container, [$basePath.'/entities' => 'Softspring\MailerBundle\Entity'], 'sfs_mailer.spool.load_default_mapping');
 
         $container->addCompilerPass(new ResolveDoctrineTargetEntityPass());
@@ -30,6 +30,10 @@ class SfsMailerBundle extends Bundle
      */
     private function addRegisterMappingsPass(ContainerBuilder $container, array $mappings, $enablingParameter = false)
     {
+        if (!class_exists('Doctrine\Bundle\DoctrineBundle\DependencyInjection\Compiler\DoctrineOrmMappingsPass')) {
+            return;
+        }
+
         $container->addCompilerPass(DoctrineOrmMappingsPass::createXmlMappingDriver($mappings, ['sfs_user_em'], $enablingParameter));
     }
 }
