@@ -6,6 +6,7 @@ use Doctrine\ORM\EntityRepository;
 use Softspring\MailerBundle\Model\EmailSpoolInterface;
 use Softspring\MailerBundle\Spool\SpoolManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -19,10 +20,14 @@ class MailerHistoryController extends AbstractController
     /**
      * MailerHistoryController constructor.
      *
-     * @param SpoolManager $spoolManager
+     * @param SpoolManager|null $spoolManager
      */
-    public function __construct(SpoolManager $spoolManager)
+    public function __construct(?SpoolManager $spoolManager)
     {
+        if (!$spoolManager instanceof SpoolManager) {
+            throw new InvalidConfigurationException('MailerHistoryController requires sfs_mailer spooling to work');
+        }
+
         $this->spoolManager = $spoolManager;
     }
 
