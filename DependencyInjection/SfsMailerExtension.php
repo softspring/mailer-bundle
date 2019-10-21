@@ -22,6 +22,8 @@ class SfsMailerExtension extends Extension implements PrependExtensionInterface
         $config = $processor->processConfiguration($configuration, $configs);
         $loader = new YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
 
+        $container->setParameter('sfs_mailer.entity_manager_name', $config['entity_manager']);
+
         $container->setParameter('sfs_mailer.mailer', $config['mailer']);
         $container->setParameter('sfs_mailer.templates', $config['templates'] ?? []);
 
