@@ -2,11 +2,12 @@
 {% extends '@SfsMailer/admin_layout.html.twig' %}
 
 {% block content %}
-    <div class="text-right">
-        <a href="{{ url('sfs_mailer_send_spool') }}">Send spool now</a>
+    <div class="d-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3">History</h1>
+        <a href="{{ url('sfs_mailer_send_spool') }}" class="btn btn-primary mb-3">Send spool now</a>
     </div>
 
-    <table class="table">
+    <table class="table table-striped table-hover">
         <thead>
         <tr>
             <th scope="col">{{ 'history.fields.date.header'|trans }}</th>
@@ -28,7 +29,7 @@
                 <td>{{ mail.messageSubject }}</td>
                 <td>{{ mail.messageFrom|keys|join(',') }}</td>
                 <td>{{ ('message.status.values.'~mail.status)|trans }}</td>
-                <td><a href="{{ url('sfs_mailer_history_details', {'messageId': mail.id}) }}">details</a></td>
+                <td align="right"><a href="{{ url('sfs_mailer_history_details', {'messageId': mail.id}) }}">details <span class="mdi mdi-18px mdi-eye-outline align-middle"></span><</a></td>
             </tr>
         {% endfor %}
         </tbody>
