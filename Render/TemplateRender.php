@@ -5,11 +5,12 @@ namespace Softspring\MailerBundle\Render;
 use Softspring\MailerBundle\Model\Template;
 use Softspring\MailerBundle\Exception\TemplateRenderException;
 use Symfony\Component\Translation\TranslatorInterface;
+use Twig\Environment;
 
 class TemplateRender
 {
     /**
-     * @var \Twig_Environment
+     * @var \Twig_Environment|Environment
      */
     protected $twig;
 
@@ -21,10 +22,10 @@ class TemplateRender
     /**
      * TemplateRender constructor.
      *
-     * @param \Twig_Environment   $twig
-     * @param TranslatorInterface $translator
+     * @param \Twig_Environment|Environment $twig
+     * @param TranslatorInterface           $translator
      */
-    public function __construct(\Twig_Environment $twig, TranslatorInterface $translator)
+    public function __construct($twig, TranslatorInterface $translator)
     {
         $this->twig = $twig;
         $this->translator = $translator;
@@ -38,7 +39,14 @@ class TemplateRender
     public function templateExists(Template $template): bool
     {
         try {
-            $this->twig->loadTemplate($template->getTwigTemplate());
+            // @deprecated twig-bundle < 4.4 support
+            if ($this->twig instanceof \Twig_Environment) {
+                $this->twig->loadTemplate($template->getTwigTemplate());
+
+                return true;
+            }
+
+            $this->twig->load($template->getTwigTemplate());
             return true;
         } catch (\Exception $e) {
             return false;
@@ -129,7 +137,12 @@ class TemplateRender
             $oldLocale = $this->translator->getLocale();
             $this->translator->setLocale($locale);
 
-            return $this->twig->loadTemplate($template)->renderBlock($block, $context);
+            // @deprecated twig-bundle < 4.4 support
+            if ($this->twig instanceof \Twig_Environment) {
+                return $this->twig->loadTemplate($template)->renderBlock($block, $context);
+            }
+
+            return $this->twig->load($template)->renderBlock($block, $context);
         } catch (\Throwable $e) {
             $this->translator->setLocale($oldLocale);
 
@@ -146,9 +159,14 @@ class TemplateRender
     protected function hasBlock(string $block, string $template): bool
     {
         try {
-            $twigTemplate = $this->twig->loadTemplate($template);
+            // @deprecated twig-bundle < 4.4 support
+            if ($this->twig instanceof \Twig_Environment) {
+                $twigTemplate = $this->twig->loadTemplate($template);
 
-            return $twigTemplate->hasBlock($block, [], $twigTemplate->getBlocks());
+                return $twigTemplate->hasBlock($block, [], $twigTemplate->getBlocks());
+            }
+
+            return $this->twig->load($template)->hasBlock($block, []);
         } catch (\Throwable $e) {
             return false;
         }
