@@ -29,7 +29,7 @@
                 <td>{{ mail.messageSubject }}</td>
                 <td>{{ mail.messageFrom|keys|join(',') }}</td>
                 <td>{{ ('message.status.values.'~mail.status)|trans }}</td>
-                <td align="right"><a href="{{ url('sfs_mailer_history_details', {'messageId': mail.id}) }}" class="text-nowrap">details <span class="mdi mdi-18px mdi-eye-outline align-middle"></span><</a></td>
+                <td align="right" class="actions"><a href="{{ url('sfs_mailer_history_details', {'messageId': mail.id}) }}" class="text-nowrap">details <span class="mdi mdi-18px mdi-eye-outline align-middle"></span></a></td>
             </tr>
         {% endfor %}
         </tbody>
