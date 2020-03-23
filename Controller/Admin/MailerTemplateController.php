@@ -15,12 +15,12 @@ use Symfony\Component\HttpFoundation\Response;
 class MailerTemplateController extends AbstractController
 {
     /**
-     * @var string
+     * @var string|null
      */
     protected $senderName;
 
     /**
-     * @var string
+     * @var string|null
      */
     protected $senderEmail;
 
@@ -31,11 +31,12 @@ class MailerTemplateController extends AbstractController
 
     /**
      * MailerTemplateController constructor.
-     * @param string $senderName
-     * @param string $senderEmail
+     *
+     * @param string|null    $senderName
+     * @param string|null    $senderEmail
      * @param TemplateMailer $templateMailer
      */
-    public function __construct(string $senderName, string $senderEmail, TemplateMailer $templateMailer)
+    public function __construct(?string $senderName, ?string $senderEmail, TemplateMailer $templateMailer)
     {
         $this->senderName = $senderName;
         $this->senderEmail = $senderEmail;
@@ -63,7 +64,7 @@ class MailerTemplateController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $formData = $form->getData();
-            list ('toEmail' => $toEmail, 'toName' => $toName, 'fromEmail' => $fromEmail, 'fromName' => $fromName) = $formData;
+            ['toEmail' => $toEmail, 'toName' => $toName, 'fromEmail' => $fromEmail, 'fromName' => $fromName] = $formData;
             $context = array_slice($formData, 4);
             $this->templateMailer->send($templateId, 'es', $context, $toEmail, $toName, $fromEmail, $fromName);
 

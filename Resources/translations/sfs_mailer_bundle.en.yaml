@@ -1,18 +1,27 @@
-history:
-    fields:
-        id.header: "ID"
-        subject.header: "Subject"
-        templateId.header: "Template"
-        to.header: "To"
-        from.header: "From"
-        date.header: "Sent date"
-        status.header: "Status"
+admin:
+    history:
+        list:
+            header_title: 'Mail history'
+            title: 'Mail history'
+            table:
+                id.header: "ID"
+                subject.header: "Subject"
+                templateId.header: "Template"
+                to.header: "To"
+                from.header: "From"
+                date.header: "Sent date"
+                status.header: "Status"
+                details.link: "details"
 
-templates:
-    fields:
-        id.header: "ID"
-        name.header: "Name"
-        twigTemplate.header: "Template"
+    templates:
+        list:
+            header_title: 'Mail templates'
+            title: 'Mail templates'
+            table:
+                id.header: "ID"
+                name.header: "Name"
+                twigTemplate.header: "Template"
+                test.link: "test"
 
 message:
     status:

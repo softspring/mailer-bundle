@@ -1,18 +1,27 @@
-history:
-    fields:
-        id.header: "ID"
-        subject.header: "Asunto"
-        templateId.header: "Plantilla"
-        to.header: "Para"
-        from.header: "De"
-        date.header: "Fecha envío"
-        status.header: "Estado"
+admin:
+    history:
+        list:
+            header_title: 'Historial de emails'
+            title: 'Historial de emails'
+            table:
+                id.header: "ID"
+                subject.header: "Asunto"
+                templateId.header: "Plantilla"
+                to.header: "Para"
+                from.header: "De"
+                date.header: "Fecha envío"
+                status.header: "Estado"
+                details.link: "detalles"
 
-templates:
-    fields:
-        id.header: "ID"
-        name.header: "Nombre"
-        twigTemplate.header: "Plantilla"
+    templates:
+        list:
+            header_title: 'Plantillas de email'
+            title: 'Plantillas de email'
+            table:
+                id.header: "ID"
+                name.header: "Nombre"
+                twigTemplate.header: "Plantilla"
+                test.link: "prueba"
 
 message:
     status:
