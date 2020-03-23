@@ -19,7 +19,7 @@ services:
     Softspring\MailerBundle\Render\TemplateRender:
         arguments:
             $twig: '@twig'
-            $translator: '@translator'
+            $translator: '@translator.default'
 
     Softspring\MailerBundle\Mailer\TemplateMailer:
         arguments:

@@ -4,7 +4,7 @@ namespace Softspring\MailerBundle\Render;
 
 use Softspring\MailerBundle\Model\Template;
 use Softspring\MailerBundle\Exception\TemplateRenderException;
-use Symfony\Component\Translation\TranslatorInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 use Twig\Environment;
 
 class TemplateRender
