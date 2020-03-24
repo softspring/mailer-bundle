@@ -1,6 +1,13 @@
 {% trans_default_domain 'sfs_mailer_bundle' %}
 {% extends '@SfsMailer/admin_layout.html.twig' %}
 
+{% block breadcrums_content %}
+    {{ parent() }}
+    <li class="breadcrumb-item">Mails</li>
+    <li class="breadcrumb-item"><a href="{{ url('sfs_mailer_history_search') }}">Mail history</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Mail details</li>
+{% endblock breadcrums_content %}
+
 {% block content %}
     <div class="d-flex align-items-center justify-content-between mb-4">
         <h1 class="h3">Template: {{ mail.templateId }}</h1>

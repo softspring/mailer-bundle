@@ -3,6 +3,12 @@
 
 {% block title %}{{ 'admin.templates.list.header_title'|trans }}{% endblock title %}
 
+{% block breadcrums_content %}
+    {{ parent() }}
+    <li class="breadcrumb-item">Mails</li>
+    <li class="breadcrumb-item active" aria-current="page">Templates</li>
+{% endblock breadcrums_content %}
+
 {% block content %}
     <div class="d-flex align-items-center justify-content-between mb-4">
         <h1 class="h3">{{ 'admin.templates.list.title'|trans }}</h1>
