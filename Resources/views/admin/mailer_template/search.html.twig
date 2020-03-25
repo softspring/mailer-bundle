@@ -1,4 +1,4 @@
-{% trans_default_domain 'sfs_mailer_bundle' %}
+{% trans_default_domain 'sfs_mailer' %}
 {% extends '@SfsMailer/admin_layout.html.twig' %}
 
 {% block title %}{{ 'admin.templates.list.header_title'|trans }}{% endblock title %}
@@ -15,11 +15,10 @@
     </div>
 
     {% embed '@SfsAdmin/components/table.html.twig' with {'collection':templates} %}
-        {% trans_default_domain 'sfs_mailer_bundle' %}
+        {% trans_default_domain 'sfs_mailer' %}
         {% block ths %}
             <th scope="col">{{ 'admin.templates.list.table.id.header'|trans }}</th>
             <th scope="col">{{ 'admin.templates.list.table.name.header'|trans }}</th>
-            <th scope="col">{{ 'admin.templates.list.table.twigTemplate.header'|trans }}</th>
             <th scope="col"></th>
         {% endblock ths %}
 
@@ -28,9 +27,10 @@
                 <tr>
                     <td>{{ template.id|trans }}</td>
                     <td>{{ template.name }}</td>
-                    <td>{{ template.twigTemplate }}</td>
                     <td class="actions text-right">
-                        <a href="{{ url('sfs_mailer_templates_test', {'templateId':template.id}) }}" class="text-nowrap">{{ 'admin.templates.list.table.test.link'|trans }} <span class="mdi mdi-18px mdi-eye-outline align-middle"></span></a>
+                        {% if template.example %}
+                            <a href="{{ url('sfs_mailer_templates_test', {'templateId':template.id}) }}" class="text-nowrap">{{ 'admin.templates.list.table.test.link'|trans }} <span class="mdi mdi-18px mdi-eye-outline align-middle"></span></a>
+                        {% endif %}
                     </td>
                 </tr>
             {% endfor %}

@@ -4,46 +4,41 @@ services:
         autoconfigure: true
         public: false
 
+    Softspring\MailerBundle\Mime\TranslatableBodyRenderer:
+        decorates: twig.mime_body_renderer
+        # pass the old service as an argument
+        arguments: ['@Softspring\MailerBundle\Mime\TranslatableBodyRenderer.inner', '@translator.default']
+
     Softspring\MailerBundle\Controller\Admin\MailerTemplateController:
         public: true
-        arguments:
-            $senderName: '%sfs_mailer.from_email.sender_name%'
-            $senderEmail: '%sfs_mailer.from_email.address%'
-            $templateMailer: '@Softspring\MailerBundle\Mailer\TemplateMailer'
+#        arguments:
+#            $senderName: '%sfs_mailer.from_email.sender_name%'
+#            $senderEmail: '%sfs_mailer.from_email.address%'
+#            $templateMailer: '@Softspring\MailerBundle\Mailer\TemplateMailer'
         tags: ['controller.service_arguments']
-
+#
     Softspring\MailerBundle\Controller\Admin\MailerHistoryController:
         public: true
         tags: ['controller.service_arguments']
 
-    Softspring\MailerBundle\Render\TemplateRender:
-        arguments:
-            $twig: '@twig'
-            $translator: '@translator.default'
+#    Softspring\MailerBundle\Render\TemplateRender:
+#        arguments:
+#            $twig: '@twig'
+#            $translator: '@translator.default'
 
-    Softspring\MailerBundle\Mailer\TemplateMailer:
+    Softspring\MailerBundle\Template\TemplateLoader:
         arguments:
-            $mailer: null
             $templateLoaders: null
-            $renderer: '@Softspring\MailerBundle\Render\TemplateRender'
-            $defaultFromEmail: '%sfs_mailer.from_email.address%'
-            $defaultFromName: '%sfs_mailer.from_email.sender_name%'
 
-    sfs_mailer:
-        alias: 'Softspring\MailerBundle\Mailer\TemplateMailer'
-        public: true
-
-    Softspring\MailerBundle\Loader\ParameterTemplateLoader:
+    Softspring\MailerBundle\Template\Loader\ParameterTemplateLoader:
         arguments:
             $templatesConfig: '%sfs_mailer.templates%'
         tags: ['sfs_mailer.template_loader']
 
     Softspring\MailerBundle\Command\ListTemplatesCommand:
-        arguments:
-            $templateMailer: '@Softspring\MailerBundle\Mailer\TemplateMailer'
         tags: ['console.command']
 
-    Softspring\MailerBundle\Command\SendTemplateCommand:
-        arguments:
-            $templateMailer: '@Softspring\MailerBundle\Mailer\TemplateMailer'
-        tags: ['console.command']
+#    Softspring\MailerBundle\Command\SendTemplateCommand:
+#        arguments:
+#            $templateMailer: '@Softspring\MailerBundle\Mailer\TemplateMailer'
+#        tags: ['console.command']

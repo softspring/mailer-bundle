@@ -20,7 +20,6 @@ admin:
             table:
                 id.header: "ID"
                 name.header: "Nombre"
-                twigTemplate.header: "Plantilla"
                 test.link: "prueba"
 
 message:

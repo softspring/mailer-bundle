@@ -2,13 +2,12 @@
 
 namespace Softspring\MailerBundle\DependencyInjection;
 
-use Softspring\MailerBundle\Model\EmailSpool;
-use Softspring\MailerBundle\Model\EmailSpoolInterface;
+use Softspring\MailerBundle\Model\EmailHistory;
+use Softspring\MailerBundle\Model\EmailHistoryInterface;
 use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
 use Symfony\Component\Config\Definition\Processor;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\Exception\InvalidArgumentException;
 use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
@@ -24,7 +23,6 @@ class SfsMailerExtension extends Extension implements PrependExtensionInterface
 
         $container->setParameter('sfs_mailer.entity_manager_name', $config['entity_manager']);
 
-        $container->setParameter('sfs_mailer.mailer', $config['mailer']);
         $container->setParameter('sfs_mailer.templates', $config['templates'] ?? []);
 
         $container->setParameter('sfs_mailer.from_email.sender_name', $config['from_email']['sender_name'] ?? null);
@@ -32,22 +30,14 @@ class SfsMailerExtension extends Extension implements PrependExtensionInterface
 
         $loader->load('services.yaml');
 
-        if ($config['spool']['enabled'] ?? false) {
-            if (!in_array(EmailSpoolInterface::class, class_implements($config['spool']['class']))) {
-                throw new InvalidConfigurationException('sfs_mailer.spool.class must implements '.EmailSpoolInterface::class);
+        if ($config['history']['enabled'] ?? false) {
+            if (!in_array(EmailHistoryInterface::class, class_implements($config['history']['class']))) {
+                throw new InvalidConfigurationException('sfs_mailer.history.class must implements '.EmailHistoryInterface::class);
             }
 
-            $container->setParameter('sfs_mailer.spool.load_default_mapping', true);
-
-            $container->setParameter('sfs_mailer.spool.class', $config['spool']['class']);
-            $container->setParameter('sfs_mailer.spool.remove_sent', $config['spool']['remove_sent']);
-            $container->setParameter('sfs_mailer.spool.remove_failed', $config['spool']['remove_failed']);
-
-            $loader->load('spool.yaml');
-        }
-
-        if ($config['auto_send']) {
-            $loader->load('auto_email_sender.yaml');
+            $container->setParameter('sfs_mailer.history.load_default_mapping', true);
+            $container->setParameter('sfs_mailer.history.class', $config['history']['class']);
+            // $loader->load('history.yaml');
         }
     }
 
@@ -56,7 +46,7 @@ class SfsMailerExtension extends Extension implements PrependExtensionInterface
         $doctrineConfig = [];
 
         // add a default config to force load target_entities, will be overwritten by ResolveDoctrineTargetEntityPass
-        $doctrineConfig['orm']['resolve_target_entities'][EmailSpoolInterface::class] = EmailSpool::class;
+        $doctrineConfig['orm']['resolve_target_entities'][EmailHistoryInterface::class] = EmailHistory::class;
 
         // disable auto-mapping for this bundle to prevent mapping errors
         $doctrineConfig['orm']['mappings']['SfsMailerBundle'] = [

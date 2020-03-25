@@ -146,12 +146,12 @@ services:
        tags: ['sfs_mailer.template_loader']                  
 ```          
 
-## Configure spool
+## Configure history
     
 ```yaml
 # config/package/sfs_mailer.yaml
 sfs_mailer:
-    spool:
+    history:
         enabled: true
 ```                   
 
@@ -160,19 +160,7 @@ Default configuration is:
 ```yaml
 # config/package/sfs_mailer.yaml
 sfs_mailer:
-    spool:
+    history:
         enabled: false
-        class: 'Softspring\MailerBundle\Entity\EmailSpool'
-        remove_sent: false
-        remove_failed: false
-```
-
-Configure swiftmailer spool:
-
-```yaml
-# config/package/swiftmailer.yaml
-swiftmailer:
-    ...
-    spool:
-        type: sfs_mailer_db
+        class: 'Softspring\MailerBundle\Entity\EmailHistory'
 ```

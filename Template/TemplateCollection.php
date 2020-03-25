@@ -1,6 +1,8 @@
 <?php
 
-namespace Softspring\MailerBundle\Model;
+namespace Softspring\MailerBundle\Template;
+
+use Softspring\MailerBundle\Model\Template;
 
 class TemplateCollection
 {

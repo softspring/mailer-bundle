@@ -3,7 +3,7 @@
 namespace Softspring\MailerBundle\DependencyInjection\Compiler;
 
 use Softspring\CoreBundle\DependencyInjection\Compiler\AbstractResolveDoctrineTargetEntityPass;
-use Softspring\MailerBundle\Model\EmailSpoolInterface;
+use Softspring\MailerBundle\Model\EmailHistoryInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 class ResolveDoctrineTargetEntityPass extends AbstractResolveDoctrineTargetEntityPass
@@ -21,6 +21,6 @@ class ResolveDoctrineTargetEntityPass extends AbstractResolveDoctrineTargetEntit
      */
     public function process(ContainerBuilder $container)
     {
-        $this->setTargetEntityFromParameter('sfs_mailer.spool.class', EmailSpoolInterface::class, $container, false);
+        $this->setTargetEntityFromParameter('sfs_mailer.history.class', EmailHistoryInterface::class, $container, false);
     }
 }

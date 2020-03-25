@@ -4,7 +4,7 @@
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
                       https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-    <entity name="Softspring\MailerBundle\Entity\EmailSpool">
+    <entity name="Softspring\MailerBundle\Entity\EmailHistory">
 
     </entity>
 

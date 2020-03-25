@@ -4,18 +4,20 @@
     "license": "MIT",
     "type": "symfony-bundle",
     "require": {
-        "php": "^7.0"
+        "php": "^7.0",
+        "symfony/mailer": "^4.4 || ^5.0"
     },
     "require-dev": {
         "symfony/console": "*",
         "symfony/framework-bundle": "*",
-        "symfony/swiftmailer-bundle": "^3.2",
         "symfony/translation": "*",
         "symfony/yaml": "*",
         "twig/twig": "*"
     },
     "suggest": {
-        "softspring/admin-bundle": "Use softspring admin templates"
+        "softspring/admin-bundle": "Use softspring admin templates",
+        "twig/cssinliner-extra": "Use css inliner",
+        "twig/inky-extra": "Use Inky mailing templates"
     },
     "autoload": {
         "psr-4": {
@@ -24,7 +26,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "2.1-dev"
+            "dev-master": "3.0-dev"
         }
     }
 }

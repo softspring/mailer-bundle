@@ -2,7 +2,7 @@
 
 namespace Softspring\MailerBundle\DependencyInjection;
 
-use Softspring\MailerBundle\Entity\EmailSpool;
+use Softspring\MailerBundle\Entity\EmailHistory;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
@@ -19,8 +19,6 @@ class Configuration implements ConfigurationInterface
                     ->defaultValue('default')
                 ->end()
 
-                ->scalarNode('mailer')->defaultValue('swiftmailer.mailer')->cannotBeEmpty()->end()
-                ->booleanNode('auto_send')->defaultFalse()->end()
                 ->arrayNode('from_email')
                     ->children()
                         ->scalarNode('sender_name')->end()
@@ -47,13 +45,11 @@ class Configuration implements ConfigurationInterface
                     ->end()
                 ->end()
 
-                ->arrayNode('spool')
+                ->arrayNode('history')
                     ->canBeEnabled()
                     ->children()
                         ->booleanNode('enabled')->defaultFalse()->end()
-                        ->scalarNode('class')->defaultValue(EmailSpool::class)->end()
-                        ->booleanNode('remove_sent')->defaultFalse()->end()
-                        ->booleanNode('remove_failed')->defaultFalse()->end()
+                        ->scalarNode('class')->defaultValue(EmailHistory::class)->end()
                     ->end()
                 ->end()
             ->end()

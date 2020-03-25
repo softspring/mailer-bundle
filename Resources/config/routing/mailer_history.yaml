@@ -3,10 +3,6 @@ sfs_mailer_history_search:
         _controller: Softspring\MailerBundle\Controller\Admin\MailerHistoryController::search
     path: /
 
-sfs_mailer_send_spool:
-    controller: Softspring\MailerBundle\Controller\Admin\MailerHistoryController::sendSpool
-    path: /send-spool
-
 sfs_mailer_history_details:
     defaults:
         _controller: Softspring\MailerBundle\Controller\Admin\MailerHistoryController::details

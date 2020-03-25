@@ -2,6 +2,9 @@
 
 namespace Softspring\MailerBundle\Model;
 
+use Softspring\MailerBundle\Mime\ExampleInterface;
+use Softspring\MailerBundle\Mime\TranslatableEmail;
+
 class Template
 {
     /**
@@ -17,40 +20,15 @@ class Template
     /**
      * @var string|null
      */
-    protected $twigTemplate;
+    protected $class = TranslatableEmail::class;
 
     /**
-     * @var string|null
+     * @var ExampleInterface|null
      */
-    protected $fromName;
+    protected $example;
 
     /**
-     * @var string|null
-     */
-    protected $fromEmail;
-
-    /**
-     * @var string
-     */
-    protected $subjectBlockName = 'subject';
-
-    /**
-     * @var string
-     */
-    protected $htmlBlockName = 'html';
-
-    /**
-     * @var string
-     */
-    protected $textBlockName = 'text';
-
-    /**
-     * @var array
-     */
-    protected $exampleContext = [];
-
-    /**
-     * @return null|string
+     * @return string|null
      */
     public function getId(): ?string
     {
@@ -58,7 +36,7 @@ class Template
     }
 
     /**
-     * @param null|string $id
+     * @param string|null $id
      */
     public function setId(?string $id): void
     {
@@ -66,7 +44,7 @@ class Template
     }
 
     /**
-     * @return null|string
+     * @return string|null
      */
     public function getName(): ?string
     {
@@ -74,7 +52,7 @@ class Template
     }
 
     /**
-     * @param null|string $name
+     * @param string|null $name
      */
     public function setName(?string $name): void
     {
@@ -82,114 +60,34 @@ class Template
     }
 
     /**
-     * @return null|string
+     * @return string|null
      */
-    public function getTwigTemplate(): ?string
+    public function getClass(): ?string
     {
-        return $this->twigTemplate;
+        return $this->class;
     }
 
     /**
-     * @param null|string $twigTemplate
+     * @param string|null $class
      */
-    public function setTwigTemplate(?string $twigTemplate): void
+    public function setClass(?string $class): void
     {
-        $this->twigTemplate = $twigTemplate;
+        $this->class = $class;
     }
 
     /**
-     * @return null|string
+     * @return ExampleInterface|null
      */
-    public function getFromName(): ?string
+    public function getExample(): ?ExampleInterface
     {
-        return $this->fromName;
+        return $this->example;
     }
 
     /**
-     * @param null|string $fromName
+     * @param ExampleInterface|null $example
      */
-    public function setFromName(?string $fromName): void
+    public function setExample(?ExampleInterface $example): void
     {
-        $this->fromName = $fromName;
-    }
-
-    /**
-     * @return null|string
-     */
-    public function getFromEmail(): ?string
-    {
-        return $this->fromEmail;
-    }
-
-    /**
-     * @param null|string $fromEmail
-     */
-    public function setFromEmail(?string $fromEmail): void
-    {
-        $this->fromEmail = $fromEmail;
-    }
-
-    /**
-     * @return string
-     */
-    public function getSubjectBlockName(): string
-    {
-        return $this->subjectBlockName;
-    }
-
-    /**
-     * @param string $subjectBlockName
-     */
-    public function setSubjectBlockName(string $subjectBlockName): void
-    {
-        $this->subjectBlockName = $subjectBlockName;
-    }
-
-    /**
-     * @return string
-     */
-    public function getHtmlBlockName(): string
-    {
-        return $this->htmlBlockName;
-    }
-
-    /**
-     * @param string $htmlBlockName
-     */
-    public function setHtmlBlockName(string $htmlBlockName): void
-    {
-        $this->htmlBlockName = $htmlBlockName;
-    }
-
-    /**
-     * @return string
-     */
-    public function getTextBlockName(): string
-    {
-        return $this->textBlockName;
-    }
-
-    /**
-     * @param string $textBlockName
-     */
-    public function setTextBlockName(string $textBlockName): void
-    {
-        $this->textBlockName = $textBlockName;
-    }
-
-    /**
-     * @return array
-     */
-    public function getExampleContext(): array
-    {
-        return $this->exampleContext;
-    }
-
-    /**
-     * @param array $exampleContext
-     */
-    public function setExampleContext(array $exampleContext): void
-    {
-        $this->exampleContext = $exampleContext;
+        $this->example = $example;
     }
 }

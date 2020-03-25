@@ -1,4 +1,4 @@
-{% trans_default_domain 'sfs_mailer_bundle' %}
+{% trans_default_domain 'sfs_mailer' %}
 {% extends '@SfsMailer/admin_layout.html.twig' %}
 
 {% block title %}{{ 'admin.history.list.header_title'|trans }}{% endblock title %}
@@ -12,11 +12,10 @@
 {% block content %}
     <div class="d-flex align-items-center justify-content-between mb-4">
         <h1 class="h3">{{ 'admin.history.list.title'|trans }}</h1>
-        <a href="{{ url('sfs_mailer_send_spool') }}" class="btn btn-primary mb-3">Send spool now</a>
     </div>
 
     {% embed '@SfsAdmin/components/table.html.twig' with {'collection':mails} %}
-        {% trans_default_domain 'sfs_mailer_bundle' %}
+        {% trans_default_domain 'sfs_mailer' %}
         {% block ths %}
             <th scope="col">{{ 'admin.history.list.table.date.header'|trans }}</th>
             <th scope="col">{{ 'admin.history.list.table.templateId.header'|trans }}</th>

@@ -5,9 +5,9 @@ namespace Softspring\MailerBundle\Model;
 use Swift_Mime_SimpleMessage;
 
 /**
- * Class EmailSpool
+ * Class EmailHistory
  */
-class EmailSpool implements EmailSpoolInterface
+class EmailHistory implements EmailHistoryInterface
 {
     /**
      * @var string|null
@@ -17,7 +17,7 @@ class EmailSpool implements EmailSpoolInterface
     /**
      * @var int|null
      */
-    protected $status = EmailSpoolInterface::STATUS_PENDING;
+    protected $status = EmailHistoryInterface::STATUS_PENDING;
 
     /**
      * @var string|null

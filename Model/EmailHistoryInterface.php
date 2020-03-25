@@ -4,7 +4,7 @@ namespace Softspring\MailerBundle\Model;
 
 use Swift_Mime_SimpleMessage;
 
-interface EmailSpoolInterface
+interface EmailHistoryInterface
 {
     const STATUS_PENDING = 1;
     const STATUS_IN_PROGRESS = 2;

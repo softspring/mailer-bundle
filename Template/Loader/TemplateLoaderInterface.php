@@ -1,8 +1,8 @@
 <?php
 
-namespace Softspring\MailerBundle\Loader;
+namespace Softspring\MailerBundle\Template\Loader;
 
-use Softspring\MailerBundle\Model\TemplateCollection;
+use Softspring\MailerBundle\Template\TemplateCollection;
 
 interface TemplateLoaderInterface
 {
