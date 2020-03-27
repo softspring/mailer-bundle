@@ -19,7 +19,7 @@ class SfsMailerExtension extends Extension implements PrependExtensionInterface
         $processor = new Processor();
         $configuration = new Configuration();
         $config = $processor->processConfiguration($configuration, $configs);
-        $loader = new YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $loader = new YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config/services'));
 
         $container->setParameter('sfs_mailer.entity_manager_name', $config['entity_manager']);
 
@@ -38,6 +38,11 @@ class SfsMailerExtension extends Extension implements PrependExtensionInterface
             $container->setParameter('sfs_mailer.history.load_default_mapping', true);
             $container->setParameter('sfs_mailer.history.class', $config['history']['class']);
             // $loader->load('history.yaml');
+        }
+
+        if ($config['deliver_every_mail_to']) {
+            $container->setParameter('sfs_mailer.deliver_every_mail_to', $config['deliver_every_mail_to']);
+            $loader->load('deliver_every_mail_to.yaml');
         }
     }
 
