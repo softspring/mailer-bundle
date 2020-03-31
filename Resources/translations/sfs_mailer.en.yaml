@@ -20,6 +20,7 @@ admin:
             table:
                 id.header: "ID"
                 name.header: "Name"
+                description.header: "Description"
                 test.link: "test"
 
 message:

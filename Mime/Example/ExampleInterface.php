@@ -1,7 +1,8 @@
 <?php
 
-namespace Softspring\MailerBundle\Mime;
+namespace Softspring\MailerBundle\Mime\Example;
 
+use Softspring\MailerBundle\Mime\TranslatableEmail;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 interface ExampleInterface

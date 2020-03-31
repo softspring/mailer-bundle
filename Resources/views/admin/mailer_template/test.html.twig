@@ -10,7 +10,7 @@
 
 {% block content %}
     <div class="d-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3">{{ template.id|trans }} test</h1>
+        <h1 class="h3">{{ (template.id~'.name')|trans }}</h1>
     </div>
 
     {{ form_start(form) }}
@@ -19,15 +19,10 @@
             {{ form_row(form.toName) }}
         </div>
         <div class="col">
-            {{ form_row(form.fromName) }}
-        </div>
-    </div>
-    <div class="row">
-        <div class="col">
             {{ form_row(form.toEmail) }}
         </div>
         <div class="col">
-            {{ form_row(form.fromEmail) }}
+            {{ form_row(form.locale) }}
         </div>
     </div>
 

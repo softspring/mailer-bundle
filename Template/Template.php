@@ -1,8 +1,8 @@
 <?php
 
-namespace Softspring\MailerBundle\Model;
+namespace Softspring\MailerBundle\Template;
 
-use Softspring\MailerBundle\Mime\ExampleInterface;
+use Softspring\MailerBundle\Mime\Example\ExampleInterface;
 use Softspring\MailerBundle\Mime\TranslatableEmail;
 
 class Template
@@ -15,7 +15,7 @@ class Template
     /**
      * @var string|null
      */
-    protected $name;
+    protected $description;
 
     /**
      * @var string|null
@@ -46,17 +46,17 @@ class Template
     /**
      * @return string|null
      */
-    public function getName(): ?string
+    public function getDescription(): ?string
     {
-        return $this->name;
+        return $this->description;
     }
 
     /**
-     * @param string|null $name
+     * @param string|null $description
      */
-    public function setName(?string $name): void
+    public function setDescription(?string $description): void
     {
-        $this->name = $name;
+        $this->description = $description;
     }
 
     /**

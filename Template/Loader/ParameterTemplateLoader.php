@@ -3,7 +3,7 @@
 namespace Softspring\MailerBundle\Template\Loader;
 
 use Softspring\MailerBundle\Mime\Example\TranslatableEmailExample;
-use Softspring\MailerBundle\Model\Template;
+use Softspring\MailerBundle\Template\Template;
 use Softspring\MailerBundle\Template\TemplateCollection;
 
 class ParameterTemplateLoader implements TemplateLoaderInterface
@@ -31,7 +31,7 @@ class ParameterTemplateLoader implements TemplateLoaderInterface
 
         foreach ($this->templatesConfig as $templateKey => $templateConfig) {
             $template->setId($templateKey);
-            // $template->setExample(new TranslatableEmailExample());
+            $template->setExample(new TranslatableEmailExample($templateConfig['template']));
 //            $template->setTwigTemplate($templateConfig['template']);
 //            $template->setSubjectBlockName($templateConfig['subject_block']);
 //            $template->setHtmlBlockName($templateConfig['html_block']);

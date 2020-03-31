@@ -2,8 +2,6 @@
 
 namespace Softspring\MailerBundle\Template;
 
-use Softspring\MailerBundle\Model\Template;
-
 class TemplateCollection
 {
     /**

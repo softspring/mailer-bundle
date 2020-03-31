@@ -2,33 +2,19 @@
 
 namespace Softspring\MailerBundle\Controller\Admin;
 
-use Softspring\MailerBundle\Model\Template;
+use Softspring\MailerBundle\Form\MailerTemplateTestFormFactory;
 use Softspring\MailerBundle\Template\TemplateLoader;
-use Softspring\UserBundle\Model\UserInterface;
-use Softspring\UserBundle\Model\UserWithEmailInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Address;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Twig\Error\LoaderError;
 
 class MailerTemplateController extends AbstractController
 {
-//    /**
-//     * @var string|null
-//     */
-//    protected $senderName;
-//
-//    /**
-//     * @var string|null
-//     */
-//    protected $senderEmail;
-
     /**
      * @var TemplateLoader
      */
@@ -45,17 +31,24 @@ class MailerTemplateController extends AbstractController
     protected $mailer;
 
     /**
+     * @var MailerTemplateTestFormFactory
+     */
+    protected $templateTestFormFactory;
+
+    /**
      * MailerTemplateController constructor.
      *
-     * @param TemplateLoader      $templateLoader
-     * @param TranslatorInterface $translator
-     * @param MailerInterface     $mailer
+     * @param TemplateLoader                $templateLoader
+     * @param TranslatorInterface           $translator
+     * @param MailerInterface               $mailer
+     * @param MailerTemplateTestFormFactory $templateTestFormFactory
      */
-    public function __construct(TemplateLoader $templateLoader, TranslatorInterface $translator, MailerInterface $mailer)
+    public function __construct(TemplateLoader $templateLoader, TranslatorInterface $translator, MailerInterface $mailer, MailerTemplateTestFormFactory $templateTestFormFactory)
     {
         $this->templateLoader = $templateLoader;
         $this->translator = $translator;
         $this->mailer = $mailer;
+        $this->templateTestFormFactory = $templateTestFormFactory;
     }
 
     public function search(): Response
@@ -75,61 +68,28 @@ class MailerTemplateController extends AbstractController
             return $this->redirectToRoute('sfs_mailer_history_search');
         }
 
-        $form = $this->createTestForm($template)->handleRequest($request);
+        $form = $this->templateTestFormFactory->createTestForm($template)->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $formData = $form->getData();
-            ['toEmail' => $toEmail, 'toName' => $toName, 'fromEmail' => $fromEmail, 'fromName' => $fromName] = $formData;
-            $context = array_slice($formData, 4);
+            ['toEmail' => $toEmail, 'toName' => $toName, 'locale' => $locale] = $formData;
 
             try {
-                $email = $template->getExample()->getEmail($context['emailFields'], $this->translator, 'es');
+                $email = $template->getExample()->getEmail($formData['emailFields'], $this->translator, $locale)
+                    ->to(new Address($toEmail, $toName))
+                ;
+
                 $this->mailer->send($email);
             } catch (LoaderError $e) {
                 $form->addError(new FormError('Template is missing'));
             }
 
-            // $this->templateLoader->send($templateId, 'es', $context, $toEmail, $toName, $fromEmail, $fromName);
-
-            // return $this->redirectToRoute('sfs_mailer_templates_search');
+            return $this->redirectToRoute('sfs_mailer_templates_search');
         }
 
         return $this->render('@SfsMailer/admin/mailer_template/test.html.twig', [
             'template' => $template,
             'form' => $form->createView(),
         ]);
-    }
-
-
-    protected function createTestForm(Template $template)
-    {
-        /** @var UserInterface|UserWithEmailInterface $user */
-        $user = $this->getUser();
-
-        $data = [
-            'toEmail' => $user->getEmail(),
-            'toName' => method_exists($user, 'getName') ? $user->getName() : '',
-            'fromEmail' => '',//$template->getFromEmail() ?? '',
-            'fromName' => '',//$template->getFromName() ?? '',
-        ];
-
-        $formBuilder = $this->createFormBuilder();
-
-        $formBuilder->add('toEmail', EmailType::class);
-        $formBuilder->add('toName', TextType::class);
-        $formBuilder->add('fromEmail', EmailType::class, [
-            'disabled' => true,
-        ]);
-        $formBuilder->add('fromName', TextType::class, [
-            'disabled' => true,
-        ]);
-
-        $example = $template->getExample();
-        $formBuilder->add('emailFields', $example->getFormType());
-        $data['emailFields'] = $example->getEmptyData();
-
-        $formBuilder->setData($data);
-
-        return $formBuilder->getForm();
     }
 }

@@ -3,28 +3,26 @@ services:
         autowire: true
         autoconfigure: true
         public: false
+        bind:
+            $locales: '%sfs_core.locales%'
+            $fromAddress: '%sfs_mailer.from_email.address%'
+            $fromName: '%sfs_mailer.from_email.sender_name%'
 
     Softspring\MailerBundle\Mime\TranslatableBodyRenderer:
         decorates: twig.mime_body_renderer
-        # pass the old service as an argument
         arguments: ['@Softspring\MailerBundle\Mime\TranslatableBodyRenderer.inner', '@translator.default']
+
+    Softspring\MailerBundle\EventListener\EmailFromListener: ~
 
     Softspring\MailerBundle\Controller\Admin\MailerTemplateController:
         public: true
-#        arguments:
-#            $senderName: '%sfs_mailer.from_email.sender_name%'
-#            $senderEmail: '%sfs_mailer.from_email.address%'
-#            $templateMailer: '@Softspring\MailerBundle\Mailer\TemplateMailer'
         tags: ['controller.service_arguments']
 #
     Softspring\MailerBundle\Controller\Admin\MailerHistoryController:
         public: true
         tags: ['controller.service_arguments']
-
-#    Softspring\MailerBundle\Render\TemplateRender:
-#        arguments:
-#            $twig: '@twig'
-#            $translator: '@translator.default'
+#
+    Softspring\MailerBundle\Form\MailerTemplateTestFormFactory: ~
 
     Softspring\MailerBundle\Template\TemplateLoader:
         arguments:

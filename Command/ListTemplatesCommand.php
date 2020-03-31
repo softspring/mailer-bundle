@@ -2,7 +2,7 @@
 
 namespace Softspring\MailerBundle\Command;
 
-use Softspring\MailerBundle\Model\Template;
+use Softspring\MailerBundle\Template\Template;
 use Softspring\MailerBundle\Template\TemplateLoader;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
