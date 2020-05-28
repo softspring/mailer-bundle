@@ -31,13 +31,13 @@ class TemplateCollection
     }
 
     /**
-     * @param $templateId
+     * @param $id
      *
      * @return null|Template
      */
-    public function getTemplate($templateId): ?Template
+    public function getTemplate($id): ?Template
     {
-        return $this->templates[$templateId] ?? null;
+        return $this->templates[$id] ?? null;
     }
 
     /**

@@ -2,7 +2,6 @@
 
 namespace Softspring\MailerBundle\Template;
 
-use Softspring\MailerBundle\Mime\Example\ExampleInterface;
 use Softspring\MailerBundle\Mime\TranslatableEmail;
 
 class Template
@@ -23,9 +22,14 @@ class Template
     protected $class = TranslatableEmail::class;
 
     /**
-     * @var ExampleInterface|null
+     * @var bool
      */
-    protected $example;
+    protected $preview = false;
+
+    public function __toString(): string
+    {
+        return $this->getId();
+    }
 
     /**
      * @return string|null
@@ -76,18 +80,18 @@ class Template
     }
 
     /**
-     * @return ExampleInterface|null
+     * @return bool
      */
-    public function getExample(): ?ExampleInterface
+    public function isPreview(): bool
     {
-        return $this->example;
+        return $this->preview;
     }
 
     /**
-     * @param ExampleInterface|null $example
+     * @param bool $preview
      */
-    public function setExample(?ExampleInterface $example): void
+    public function setPreview(bool $preview): void
     {
-        $this->example = $example;
+        $this->preview = $preview;
     }
 }

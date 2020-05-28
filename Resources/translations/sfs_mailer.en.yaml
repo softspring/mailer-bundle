@@ -13,15 +13,15 @@ admin:
                 status.header: "Status"
                 details.link: "details"
 
-    templates:
-        list:
-            header_title: 'Mail templates'
-            title: 'Mail templates'
-            table:
-                id.header: "ID"
-                name.header: "Name"
-                description.header: "Description"
-                test.link: "test"
+admin_templates:
+    list:
+        header_title: 'Mail templates'
+        title: 'Mail templates'
+        table:
+            id.header: "ID"
+            name.header: "Name"
+            description.header: "Description"
+            preview.link: "preview"
 
 message:
     status:

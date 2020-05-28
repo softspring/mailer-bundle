@@ -1,0 +1,35 @@
+{% trans_default_domain 'sfs_mailer' %}
+{% extends '@SfsMailer/admin_layout.html.twig' %}
+
+{% block breadcrums_content %}
+    {{ parent() }}
+    <li class="breadcrumb-item">Mails</li>
+    <li class="breadcrumb-item"><a href="{{ url('sfs_mailer_templates_search') }}">Templates</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Preview template</li>
+{% endblock breadcrums_content %}
+
+{% block content %}
+    <div class="d-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3">{{ (template.id~'.name')|trans }}</h1>
+
+        <div class="dropdown show">
+            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {{ preview_locale }}
+            </a>
+
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                {% for locale in locales|default(['es', 'en']) %}
+                    <a class="dropdown-item {{ locale == preview_locale ? 'font-weight-bold' : '' }}" href="{{ url(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')|merge({'locale':locale})) }}">{{ locale }}</a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <div class="text-right">
+        <a href="{{ url('sfs_mailer_templates_test', {'template': template.id}) }}" class="btn btn-outline-secondary">Send test</a>
+    </div>
+
+    <h5>Subject: {{ mail.getSubject }}</h5>
+    <iframe srcdoc="{{ mail.getHtmlBody }}" width="100%" height="500"></iframe>
+
+{% endblock content %}

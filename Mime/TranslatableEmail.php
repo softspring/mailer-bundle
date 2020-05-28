@@ -18,6 +18,11 @@ class TranslatableEmail extends ExtendedContextEmail
      */
     protected $translator;
 
+    public static function generateExample(TranslatorInterface $translator, ?string $locale = null): TranslatableEmail
+    {
+        return new self($translator, $locale);
+    }
+
     /**
      * TranslatableEmail constructor.
      *

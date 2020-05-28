@@ -2,7 +2,9 @@
 
 namespace Softspring\MailerBundle\Controller\Admin;
 
-use Softspring\MailerBundle\Form\MailerTemplateTestFormFactory;
+use Softspring\MailerBundle\Form\Admin\SendTestForm;
+use Softspring\MailerBundle\Mime\TranslatableBodyRenderer;
+use Softspring\MailerBundle\Mime\TranslatableEmail;
 use Softspring\MailerBundle\Template\TemplateLoader;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormError;
@@ -31,9 +33,14 @@ class MailerTemplateController extends AbstractController
     protected $mailer;
 
     /**
-     * @var MailerTemplateTestFormFactory
+     * @var TranslatableBodyRenderer
      */
-    protected $templateTestFormFactory;
+    protected $renderer;
+
+    /**
+     * @var array
+     */
+    protected $locales;
 
     /**
      * MailerTemplateController constructor.
@@ -41,14 +48,16 @@ class MailerTemplateController extends AbstractController
      * @param TemplateLoader                $templateLoader
      * @param TranslatorInterface           $translator
      * @param MailerInterface               $mailer
-     * @param MailerTemplateTestFormFactory $templateTestFormFactory
+     * @param TranslatableBodyRenderer      $renderer
+     * @param array                         $locales
      */
-    public function __construct(TemplateLoader $templateLoader, TranslatorInterface $translator, MailerInterface $mailer, MailerTemplateTestFormFactory $templateTestFormFactory)
+    public function __construct(TemplateLoader $templateLoader, TranslatorInterface $translator, MailerInterface $mailer, TranslatableBodyRenderer $renderer, array $locales)
     {
         $this->templateLoader = $templateLoader;
         $this->translator = $translator;
         $this->mailer = $mailer;
-        $this->templateTestFormFactory = $templateTestFormFactory;
+        $this->renderer = $renderer;
+        $this->locales = $locales;
     }
 
     public function search(): Response
@@ -60,36 +69,65 @@ class MailerTemplateController extends AbstractController
         ]);
     }
 
-    public function test(string $templateId, Request $request): Response
+    public function test(string $template, Request $request): Response
     {
-        $template = $this->templateLoader->getTemplateCollection()->getTemplate($templateId);
+        $template = $this->templateLoader->getTemplateCollection()->getTemplate($template);
 
         if (!$template) {
             return $this->redirectToRoute('sfs_mailer_history_search');
         }
 
-        $form = $this->templateTestFormFactory->createTestForm($template)->handleRequest($request);
+        $data = [
+            'locale' => $request->getLocale(),
+            'toName' => method_exists($this->getUser(), 'getName') ? $this->getUser()->getName() : '',
+            'toEmail' => method_exists($this->getUser(), 'getEmail') ? $this->getUser()->getEmail() : '',
+        ];
+        $form = $this->createForm(SendTestForm::class, $data, $this->locales)->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $formData = $form->getData();
             ['toEmail' => $toEmail, 'toName' => $toName, 'locale' => $locale] = $formData;
 
             try {
-                $email = $template->getExample()->getEmail($formData['emailFields'], $this->translator, $locale)
+                /** @var TranslatableEmail|string $mailClass */
+                $mailClass = $template->getClass();
+                $mail = $mailClass::generateExample($this->translator, $locale)
                     ->to(new Address($toEmail, $toName))
                 ;
 
-                $this->mailer->send($email);
+                $this->mailer->send($mail);
             } catch (LoaderError $e) {
                 $form->addError(new FormError('Template is missing'));
             }
 
-            return $this->redirectToRoute('sfs_mailer_templates_search');
+            return $this->redirectToRoute('sfs_mailer_templates_preview', ['template' => $template]);
         }
 
         return $this->render('@SfsMailer/admin/mailer_template/test.html.twig', [
             'template' => $template,
             'form' => $form->createView(),
+        ]);
+    }
+
+    public function preview(string $template, Request $request): Response
+    {
+        $template = $this->templateLoader->getTemplateCollection()->getTemplate($template);
+
+        if (! $template) {
+            // not found
+            return $this->redirectToRoute('sfs_mailer_history_search');
+        }
+
+        /** @var TranslatableEmail|string $mailClass */
+        $mailClass = $template->getClass();
+        $mail = $mailClass::generateExample($this->translator, $locale = $request->get('locale', 'en'));
+        $this->renderer->render($mail);
+
+        return $this->render('@SfsMailer/admin/mailer_template/preview.html.twig', [
+            'template' => $template,
+            'mail' => $mail,
+            'locales' => $this->locales,
+            'preview_locale' => $locale,
         ]);
     }
 }

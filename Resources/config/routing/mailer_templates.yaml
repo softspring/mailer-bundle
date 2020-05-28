@@ -6,5 +6,10 @@ sfs_mailer_templates_search:
 sfs_mailer_templates_test:
     defaults:
         _controller: Softspring\MailerBundle\Controller\Admin\MailerTemplateController::test
-    path: /{templateId}
+    path: /{template}/test
+
+sfs_mailer_templates_preview:
+    defaults:
+        _controller: Softspring\MailerBundle\Controller\Admin\MailerTemplateController::preview
+    path: /{template}/preview
 
