@@ -14,7 +14,7 @@
         <h1 class="h3">{{ 'admin.history.list.title'|trans }}</h1>
     </div>
 
-    {% embed '@SfsAdmin/components/table.html.twig' with {'collection':mails} %}
+    {% embed '@SfsAdmin/components/table.html.twig' with {'collection':mails, 'pagination_route': false} %}
         {% trans_default_domain 'sfs_mailer' %}
         {% block ths %}
             <th scope="col">{{ 'admin.history.list.table.date.header'|trans }}</th>
