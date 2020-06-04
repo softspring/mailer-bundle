@@ -15,21 +15,18 @@
 
     {{ form_start(form) }}
     <div class="row">
-        <div class="col">
+        <div class="col-6 col-lg">
             {{ form_row(form.toName) }}
         </div>
-        <div class="col">
+        <div class="col-6 col-lg">
             {{ form_row(form.toEmail) }}
         </div>
-        <div class="col">
+        <div class="col-6 col-lg">
             {{ form_row(form.locale) }}
         </div>
-    </div>
-
-    <div class="row">
-        <div class="col-6 offset-3">
+        <div class="col-6 col-lg pt-2">
             {{ form_widget(form) }}
-            <input type="submit" value="send" class="btn btn-primary"/>
+            <input type="submit" value="send" class="btn btn-primary mt-4"/>
         </div>
     </div>
 
