@@ -6,31 +6,23 @@ use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 
 class ExtendedContextEmail extends TemplatedEmail
 {
-    /**
-     * @var array
-     */
-    protected $context = [];
-
-    public function getContext(): array
+    protected function setContextBlock(string $key, array $block = [])
     {
-        return array_merge($this->context, parent::getContext());
+        $this->context(array_merge($this->getContext(), [$key => $block]));
     }
 
-    /**
-     * @internal
-     */
-    public function __serialize(): array
+    protected function getContextBlock(string $key): array
     {
-        return [$this->context, parent::__serialize()];
+        return $this->getContext()[$key] ?? [];
     }
 
-    /**
-     * @internal
-     */
-    public function __unserialize(array $data): void
+    protected function setContextParam(string $key, $value)
     {
-        [$this->context, $parentData] = $data;
+        $this->context(array_merge($this->getContext(), [$key => $value]));
+    }
 
-        parent::__unserialize($parentData);
+    protected function getContextParam(string $key)
+    {
+        return $this->getContext()[$key] ?? null;
     }
 }

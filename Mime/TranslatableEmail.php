@@ -40,7 +40,7 @@ class TranslatableEmail extends ExtendedContextEmail
 
     public function subject(string $subject, ?string $domain = null)
     {
-        $subject = $this->translator->trans($subject, $this->context['__translation_params'] ?? [], $domain, $this->locale);
+        $subject = $this->translator->trans($subject, $this->getTranslationParams(), $domain, $this->locale);
 
         return parent::subject($subject);
     }
@@ -60,7 +60,7 @@ class TranslatableEmail extends ExtendedContextEmail
      */
     public function setTranslationParams(array $context): self
     {
-        $this->context['__translation_params'] = $context;
+        $this->setContextBlock('__translation_params', $context);
 
         return $this;
     }
@@ -70,6 +70,6 @@ class TranslatableEmail extends ExtendedContextEmail
      */
     public function getTranslationParams(): array
     {
-        return $this->context['__translation_params'] ?? [];
+        return $this->getContextBlock('__translation_params');
     }
 }
