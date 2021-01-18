@@ -58,7 +58,7 @@ class EmailHistory implements EmailHistoryInterface
     /**
      * @inheritdoc
      */
-    public function getMessage(): Swift_Mime_SimpleMessage
+    public function getMessage()
     {
         return unserialize($this->message);
     }
@@ -74,7 +74,7 @@ class EmailHistory implements EmailHistoryInterface
     /**
      * @inheritdoc
      */
-    public function setMessage(Swift_Mime_SimpleMessage $message): bool
+    public function setMessage($message): bool
     {
         $this->message = serialize($message);
 
