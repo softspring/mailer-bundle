@@ -19,14 +19,14 @@ interface EmailHistoryInterface
     /**
      * @return Swift_Mime_SimpleMessage
      */
-    public function getMessage(): Swift_Mime_SimpleMessage;
+    public function getMessage();
 
     /**
      * @param Swift_Mime_SimpleMessage $message
      *
      * @return bool
      */
-    public function setMessage(Swift_Mime_SimpleMessage $message): bool;
+    public function setMessage($message): bool;
 
     /**
      * @return int
