@@ -23,7 +23,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Softspring\\MailerBundle\\": ""
+            "Softspring\\MailerBundle\\": "src/"
         }
     },
     "extra": {

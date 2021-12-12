@@ -10,11 +10,16 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 class SfsMailerBundle extends Bundle
 {
+    public function getPath(): string
+    {
+        return \dirname(__DIR__);
+    }
+
     public function build(ContainerBuilder $container)
     {
         parent::build($container);
 
-        $basePath = realpath(__DIR__.'/Resources/config/doctrine-mapping/');
+        $basePath = realpath(__DIR__.'/../config/doctrine-mapping/');
 
         $this->addRegisterMappingsPass($container, [$basePath.'/model' => 'Softspring\MailerBundle\Model']);
         $this->addRegisterMappingsPass($container, [$basePath.'/entities' => 'Softspring\MailerBundle\Entity'], 'sfs_mailer.history.load_default_mapping');
