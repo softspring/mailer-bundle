@@ -6,7 +6,7 @@ This bundle provides some features that ease mailing for Symfony projects.
 [![Latest Unstable Version](https://poser.pugx.org/softspring/mailer-bundle/v/unstable.svg)](https://packagist.org/packages/softspring/mailer-bundle)
 [![License](https://poser.pugx.org/softspring/mailer-bundle/license.svg)](https://packagist.org/packages/softspring/mailer-bundle)
 [![Total Downloads](https://poser.pugx.org/softspring/mailer-bundle/downloads)](https://packagist.org/packages/softspring/mailer-bundle)
-[![Build status](https://travis-ci.com/softspring/mailer-bundle.svg?branch=master)](https://travis-ci.com/softspring/mailer-bundle)
+[![Build status](https://app.travis-ci.com/github/softspring/mailer-bundle.svg?branch=master)](https://app.travis-ci.com/github/softspring/mailer-bundle)
 
 
 # Installation
