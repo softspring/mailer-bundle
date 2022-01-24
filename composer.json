@@ -7,6 +7,7 @@
     "require": {
         "php": ">=7.4",
         "softspring/core-bundle": "^4.0",
+        "softspring/mime-translatable": "^4.0",
         "symfony/mailer": "^4.4 || ^5.3 || ^6.0"
     },
     "require-dev": {

@@ -2,27 +2,12 @@
 
 namespace Softspring\MailerBundle\Mime;
 
-use Symfony\Bridge\Twig\Mime\TemplatedEmail;
+use Softspring\Component\MimeTranslatable\ExtendedContextEmail as ExtendedContextEmailComponent;
 
-class ExtendedContextEmail extends TemplatedEmail
+/**
+ * @deprecated use Softspring\Component\MimeTranslatable\ExtendedContextEmail
+ */
+class ExtendedContextEmail extends ExtendedContextEmailComponent
 {
-    protected function setContextBlock(string $key, array $block = [])
-    {
-        $this->context(array_merge($this->getContext(), [$key => $block]));
-    }
 
-    protected function getContextBlock(string $key): array
-    {
-        return $this->getContext()[$key] ?? [];
-    }
-
-    protected function setContextParam(string $key, $value)
-    {
-        $this->context(array_merge($this->getContext(), [$key => $value]));
-    }
-
-    protected function getContextParam(string $key)
-    {
-        return $this->getContext()[$key] ?? null;
-    }
 }
