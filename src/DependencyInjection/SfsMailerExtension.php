@@ -2,7 +2,7 @@
 
 namespace Softspring\MailerBundle\DependencyInjection;
 
-use Softspring\MailerBundle\Model\EmailHistory;
+use Softspring\MailerBundle\Entity\EmailHistory;
 use Softspring\MailerBundle\Model\EmailHistoryInterface;
 use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
 use Symfony\Component\Config\Definition\Processor;
@@ -28,6 +28,10 @@ class SfsMailerExtension extends Extension implements PrependExtensionInterface
         $container->setParameter('sfs_mailer.from_email.sender_name', $config['from_email']['sender_name'] ?? null);
         $container->setParameter('sfs_mailer.from_email.address', $config['from_email']['address'] ?? null);
 
+        if ($config['from_email']['address'] ?? null) {
+            $loader->load('email_from_listener.yaml');
+        }
+
         $loader->load('services.yaml');
 
         if ($config['history']['enabled'] ?? false) {
@@ -37,7 +41,7 @@ class SfsMailerExtension extends Extension implements PrependExtensionInterface
 
             $container->setParameter('sfs_mailer.history.load_default_mapping', true);
             $container->setParameter('sfs_mailer.history.class', $config['history']['class']);
-            // $loader->load('history.yaml');
+            $loader->load('history.yaml');
         }
 
         if ($config['deliver_every_mail_to']) {

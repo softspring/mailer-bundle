@@ -4,9 +4,12 @@
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
                       https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-    <mapped-superclass name="Softspring\MailerBundle\Model\EmailHistory" table="email_history">
-        <id name="id" type="guid" column="id">
-            <generator strategy="UUID"/>
+    <mapped-superclass name="Softspring\MailerBundle\Model\EmailHistory" table="mailer_history">
+        <id name="id" type="integer" column="id">
+            <generator strategy="AUTO"/>
+            <options>
+                <option name="unsigned">true</option>
+            </options>
         </id>
 
         <field name="status" column="status" type="smallint" nullable="false">

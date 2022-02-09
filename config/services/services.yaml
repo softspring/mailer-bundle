@@ -5,23 +5,15 @@ services:
         public: false
         bind:
             $locales: '%sfs_core.locales%'
-            $fromAddress: '%sfs_mailer.from_email.address%'
-            $fromName: '%sfs_mailer.from_email.sender_name%'
 
     Softspring\MailerBundle\Mime\TranslatableBodyRenderer:
         decorates: twig.mime_body_renderer
         arguments: ['@Softspring\MailerBundle\Mime\TranslatableBodyRenderer.inner', '@translator.default']
 
-    Softspring\MailerBundle\EventListener\EmailFromListener: ~
-
     Softspring\MailerBundle\Controller\Admin\MailerTemplateController:
         public: true
         tags: ['controller.service_arguments']
-#
-    Softspring\MailerBundle\Controller\Admin\MailerHistoryController:
-        public: true
-        tags: ['controller.service_arguments']
-#
+
     Softspring\MailerBundle\Template\TemplateLoader:
         arguments:
             $templateLoaders: null

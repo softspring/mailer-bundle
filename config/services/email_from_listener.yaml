@@ -1,0 +1,11 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+        bind:
+            $locales: '%sfs_core.locales%'
+            $fromAddress: '%sfs_mailer.from_email.address%'
+            $fromName: '%sfs_mailer.from_email.sender_name%'
+
+    Softspring\MailerBundle\EventListener\EmailFromListener: ~

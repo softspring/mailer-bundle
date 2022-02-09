@@ -1,0 +1,9 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    Softspring\MailerBundle\Controller\Admin\MailerHistoryController:
+        public: true
+        tags: ['controller.service_arguments']
