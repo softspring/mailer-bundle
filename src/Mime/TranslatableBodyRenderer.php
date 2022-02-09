@@ -9,5 +9,4 @@ use Softspring\Component\MimeTranslatable\TranslatableBodyRenderer as Translatab
  */
 class TranslatableBodyRenderer extends TranslatableBodyRendererComponent
 {
-
 }

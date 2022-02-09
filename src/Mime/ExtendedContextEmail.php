@@ -9,5 +9,4 @@ use Softspring\Component\MimeTranslatable\ExtendedContextEmail as ExtendedContex
  */
 class ExtendedContextEmail extends ExtendedContextEmailComponent
 {
-
 }

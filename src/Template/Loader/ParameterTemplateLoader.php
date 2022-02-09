@@ -2,7 +2,6 @@
 
 namespace Softspring\MailerBundle\Template\Loader;
 
-use Softspring\MailerBundle\Mime\Example\TranslatableEmailExample;
 use Softspring\MailerBundle\Template\Template;
 use Softspring\MailerBundle\Template\TemplateCollection;
 
@@ -15,8 +14,6 @@ class ParameterTemplateLoader implements TemplateLoaderInterface
 
     /**
      * ParameterTemplateLoader constructor.
-     *
-     * @param array $templatesConfig
      */
     public function __construct(array $templatesConfig)
     {

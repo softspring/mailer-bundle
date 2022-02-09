@@ -10,11 +10,6 @@ use Symfony\Component\HttpFoundation\Response;
 
 class MailerHistoryController extends AbstractController
 {
-    /**
-     * @param Request $request
-     *
-     * @return Response
-     */
     public function search(Request $request): Response
     {
         $mails = $this->getRepository()->findBy([], ['createdAt' => 'DESC']);
@@ -25,10 +20,7 @@ class MailerHistoryController extends AbstractController
     }
 
     /**
-     * @param         $messageId
-     * @param Request $request
-     *
-     * @return Response
+     * @param $messageId
      */
     public function details($messageId, Request $request): Response
     {
@@ -39,9 +31,6 @@ class MailerHistoryController extends AbstractController
         ]);
     }
 
-    /**
-     * @return EntityRepository
-     */
     protected function getRepository(): EntityRepository
     {
         return $this->getDoctrine()->getRepository(EmailHistoryInterface::class);

@@ -3,8 +3,8 @@
 namespace Softspring\MailerBundle;
 
 use Doctrine\Bundle\DoctrineBundle\DependencyInjection\Compiler\DoctrineOrmMappingsPass;
-use Softspring\MailerBundle\DependencyInjection\Compiler\TemplateLoadersCompilerPass;
 use Softspring\MailerBundle\DependencyInjection\Compiler\ResolveDoctrineTargetEntityPass;
+use Softspring\MailerBundle\DependencyInjection\Compiler\TemplateLoadersCompilerPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
@@ -29,9 +29,7 @@ class SfsMailerBundle extends Bundle
     }
 
     /**
-     * @param ContainerBuilder $container
-     * @param array            $mappings
-     * @param string|bool      $enablingParameter
+     * @param string|bool $enablingParameter
      */
     private function addRegisterMappingsPass(ContainerBuilder $container, array $mappings, $enablingParameter = false)
     {

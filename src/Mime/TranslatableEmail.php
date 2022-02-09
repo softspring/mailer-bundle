@@ -9,5 +9,4 @@ use Softspring\Component\MimeTranslatable\TranslatableEmail as TranslatableEmail
  */
 class TranslatableEmail extends TranslatableEmailComponent
 {
-
 }

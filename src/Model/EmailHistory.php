@@ -5,7 +5,7 @@ namespace Softspring\MailerBundle\Model;
 use Swift_Mime_SimpleMessage;
 
 /**
- * Class EmailHistory
+ * Class EmailHistory.
  */
 class EmailHistory implements EmailHistoryInterface
 {
@@ -48,7 +48,7 @@ class EmailHistory implements EmailHistoryInterface
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function getId(): string
     {
@@ -56,7 +56,7 @@ class EmailHistory implements EmailHistoryInterface
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function getMessage()
     {
@@ -64,7 +64,7 @@ class EmailHistory implements EmailHistoryInterface
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function getStatus(): int
     {
@@ -72,7 +72,7 @@ class EmailHistory implements EmailHistoryInterface
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function setMessage($message): bool
     {
@@ -82,24 +82,18 @@ class EmailHistory implements EmailHistoryInterface
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function setStatus(int $status): void
     {
         $this->status = $status;
     }
 
-    /**
-     * @return null|string
-     */
     public function getTemplateId(): ?string
     {
         return $this->templateId;
     }
 
-    /**
-     * @param null|string $templateId
-     */
     public function setTemplateId(?string $templateId): void
     {
         $this->templateId = $templateId;
@@ -145,7 +139,7 @@ class EmailHistory implements EmailHistoryInterface
             return null;
         }
 
-        if ($this->getMessage()->getBodyContentType() == 'text/html') {
+        if ('text/html' == $this->getMessage()->getBodyContentType()) {
             return $this->getMessage()->getBody();
         }
 
@@ -158,40 +152,28 @@ class EmailHistory implements EmailHistoryInterface
             return null;
         }
 
-        if ($this->getMessage()->getBodyContentType() == 'text/plain') {
+        if ('text/plain' == $this->getMessage()->getBodyContentType()) {
             return $this->getMessage()->getBody();
         }
 
         return null;
     }
 
-    /**
-     * @return \DateTime|null
-     */
     public function getCreatedAt(): ?\DateTime
     {
-        return \DateTime::createFromFormat("U", $this->createdAt) ?: null;
+        return \DateTime::createFromFormat('U', $this->createdAt) ?: null;
     }
 
-    /**
-     * @param \DateTime|null $createdAt
-     */
     public function setCreatedAt(?\DateTime $createdAt): void
     {
         $this->createdAt = $createdAt instanceof \DateTime ? $createdAt->format('U') : null;
     }
 
-    /**
-     * @return \DateTime|null
-     */
     public function getLastStatusAt(): ?\DateTime
     {
-        return \DateTime::createFromFormat("U", $this->lastStatusAt) ?: null;
+        return \DateTime::createFromFormat('U', $this->lastStatusAt) ?: null;
     }
 
-    /**
-     * @param \DateTime|null $lastStatusAt
-     */
     public function setLastStatusAt(?\DateTime $lastStatusAt): void
     {
         $this->lastStatusAt = $lastStatusAt instanceof \DateTime ? $lastStatusAt->format('U') : null;

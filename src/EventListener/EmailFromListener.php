@@ -21,9 +21,6 @@ class EmailFromListener implements EventSubscriberInterface
 
     /**
      * EmailFromListener constructor.
-     *
-     * @param string      $fromAddress
-     * @param string|null $fromName
      */
     public function __construct(string $fromAddress, ?string $fromName)
     {
@@ -34,7 +31,7 @@ class EmailFromListener implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return [
-            MessageEvent::class => ['onMessageEvent']
+            MessageEvent::class => ['onMessageEvent'],
         ];
     }
 

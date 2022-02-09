@@ -26,9 +26,6 @@ class TemplateLoader
         }
     }
 
-    /**
-     * @return TemplateCollection
-     */
     public function getTemplateCollection(): TemplateCollection
     {
         return $this->templateCollection;

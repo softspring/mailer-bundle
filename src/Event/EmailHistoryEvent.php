@@ -14,17 +14,12 @@ class EmailHistoryEvent extends Event
 
     /**
      * EmailHistoryEvent constructor.
-     *
-     * @param EmailHistoryInterface $emailHistory
      */
     public function __construct(EmailHistoryInterface $emailHistory)
     {
         $this->emailHistory = $emailHistory;
     }
 
-    /**
-     * @return EmailHistoryInterface
-     */
     public function getEmailHistory(): EmailHistoryInterface
     {
         return $this->emailHistory;

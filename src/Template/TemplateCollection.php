@@ -32,17 +32,12 @@ class TemplateCollection
 
     /**
      * @param $id
-     *
-     * @return null|Template
      */
     public function getTemplate($id): ?Template
     {
         return $this->templates[$id] ?? null;
     }
 
-    /**
-     * @param TemplateCollection $collection
-     */
     public function appendCollection(TemplateCollection $collection)
     {
         foreach ($collection->getTemplates() as $key => $template) {

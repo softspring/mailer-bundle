@@ -17,8 +17,6 @@ class ListTemplatesCommand extends Command
 
     /**
      * DebugTemplatesCommand constructor.
-     *
-     * @param TemplateLoader $templateLoader
      */
     public function __construct(TemplateLoader $templateLoader)
     {

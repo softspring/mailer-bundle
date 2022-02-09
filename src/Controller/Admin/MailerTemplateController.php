@@ -44,12 +44,6 @@ class MailerTemplateController extends AbstractController
 
     /**
      * MailerTemplateController constructor.
-     *
-     * @param TemplateLoader                $templateLoader
-     * @param TranslatorInterface           $translator
-     * @param MailerInterface               $mailer
-     * @param TranslatableBodyRenderer      $renderer
-     * @param array                         $locales
      */
     public function __construct(TemplateLoader $templateLoader, TranslatorInterface $translator, MailerInterface $mailer, TranslatableBodyRenderer $renderer, array $locales)
     {
@@ -113,7 +107,7 @@ class MailerTemplateController extends AbstractController
     {
         $template = $this->templateLoader->getTemplateCollection()->getTemplate($template);
 
-        if (! $template) {
+        if (!$template) {
             // not found
             return $this->redirectToRoute('sfs_mailer_history_search');
         }

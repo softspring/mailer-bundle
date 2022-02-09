@@ -26,7 +26,7 @@ class DeliverMailsToListener implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return [
-            MessageEvent::class => ['onMessageEvent']
+            MessageEvent::class => ['onMessageEvent'],
         ];
     }
 
