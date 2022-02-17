@@ -9,33 +9,24 @@ use Symfony\Component\Mime\Email;
 
 class EmailFromListener implements EventSubscriberInterface
 {
-    /**
-     * @var string
-     */
-    protected $fromAddress;
+    protected string $fromAddress;
 
-    /**
-     * @var string|null
-     */
-    protected $fromName;
+    protected ?string $fromName;
 
-    /**
-     * EmailFromListener constructor.
-     */
     public function __construct(string $fromAddress, ?string $fromName)
     {
         $this->fromAddress = $fromAddress;
         $this->fromName = $fromName;
     }
 
-    public static function getSubscribedEvents()
+    public static function getSubscribedEvents(): array
     {
         return [
             MessageEvent::class => ['onMessageEvent'],
         ];
     }
 
-    public function onMessageEvent(MessageEvent $event)
+    public function onMessageEvent(MessageEvent $event): void
     {
         $email = $event->getMessage();
 

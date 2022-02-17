@@ -11,11 +11,9 @@ class DeliverMailsToListener implements EventSubscriberInterface
     /**
      * @var string[]
      */
-    protected $to;
+    protected array $to;
 
     /**
-     * DeliverMailsToListener constructor.
-     *
      * @param string[] $to
      */
     public function __construct(array $to)
@@ -23,14 +21,14 @@ class DeliverMailsToListener implements EventSubscriberInterface
         $this->to = $to;
     }
 
-    public static function getSubscribedEvents()
+    public static function getSubscribedEvents(): array
     {
         return [
             MessageEvent::class => ['onMessageEvent'],
         ];
     }
 
-    public function onMessageEvent(MessageEvent $event)
+    public function onMessageEvent(MessageEvent $event): void
     {
         $email = $event->getMessage();
 
