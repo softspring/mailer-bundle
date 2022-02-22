@@ -4,7 +4,7 @@ services:
         autoconfigure: true
         public: false
         bind:
-            $locales: '%sfs_core.locales%'
+            $locales: '%kernel.enabled_locales%'
             $fromAddress: '%sfs_mailer.from_email.address%'
             $fromName: '%sfs_mailer.from_email.sender_name%'
 
