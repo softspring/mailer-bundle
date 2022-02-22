@@ -5,7 +5,6 @@ namespace Softspring\MailerBundle\Controller\Admin;
 use Softspring\Component\MimeTranslatable\ExampleEmailInterface;
 use Softspring\MailerBundle\Form\Admin\SendTestForm;
 use Softspring\MailerBundle\Mime\TranslatableBodyRenderer;
-use Softspring\MailerBundle\Mime\TranslatableEmail;
 use Softspring\MailerBundle\Template\TemplateLoader;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormError;
