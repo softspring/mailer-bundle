@@ -7,9 +7,9 @@
     "prefer-stable": true,
     "require": {
         "php": ">=7.4",
-        "softspring/admin-bundle": "^4.0",
-        "softspring/core-bundle": "^4.0",
-        "softspring/mime-translatable": "^4.0",
+        "softspring/admin-bundle": "^5.0",
+        "softspring/core-bundle": "^5.0",
+        "softspring/mime-translatable": "^5.0",
         "symfony/mailer": "^4.4 || ^5.3 || ^6.0"
     },
     "require-dev": {
