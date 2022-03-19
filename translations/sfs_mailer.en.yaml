@@ -19,7 +19,7 @@ admin_templates:
         title: 'Mail templates'
         table:
             id.header: "ID"
-            name.header: "Name"
+            name.header: "Template"
             description.header: "Description"
             preview.link: "preview"
 
