@@ -8,9 +8,6 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 class ResolveDoctrineTargetEntityPass extends AbstractResolveDoctrineTargetEntityPass
 {
-    /**
-     * {@inheritDoc}
-     */
     protected function getEntityManagerName(ContainerBuilder $container): string
     {
         return $container->getParameter('sfs_mailer.entity_manager_name');

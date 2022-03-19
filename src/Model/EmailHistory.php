@@ -47,33 +47,21 @@ class EmailHistory implements EmailHistoryInterface
         return "{$this->getId()}";
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getId(): string
     {
         return $this->id;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getMessage()
     {
         return unserialize($this->message);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getStatus(): int
     {
         return $this->status;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setMessage($message): bool
     {
         $this->message = serialize($message);
@@ -81,9 +69,6 @@ class EmailHistory implements EmailHistoryInterface
         return true;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setStatus(int $status): void
     {
         $this->status = $status;
