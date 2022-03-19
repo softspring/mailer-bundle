@@ -17,34 +17,12 @@ use Twig\Error\LoaderError;
 
 class MailerTemplateController extends AbstractController
 {
-    /**
-     * @var TemplateLoader
-     */
-    protected $templateLoader;
+    protected TemplateLoader $templateLoader;
+    protected TranslatorInterface $translator;
+    protected MailerInterface $mailer;
+    protected TranslatableBodyRenderer $renderer;
+    protected array $locales;
 
-    /**
-     * @var TranslatorInterface
-     */
-    protected $translator;
-
-    /**
-     * @var MailerInterface
-     */
-    protected $mailer;
-
-    /**
-     * @var TranslatableBodyRenderer
-     */
-    protected $renderer;
-
-    /**
-     * @var array
-     */
-    protected $locales;
-
-    /**
-     * MailerTemplateController constructor.
-     */
     public function __construct(TemplateLoader $templateLoader, TranslatorInterface $translator, MailerInterface $mailer, TranslatableBodyRenderer $renderer, array $locales)
     {
         $this->templateLoader = $templateLoader;
