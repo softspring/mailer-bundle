@@ -19,15 +19,6 @@ class Configuration implements ConfigurationInterface
                     ->defaultValue('default')
                 ->end()
 
-                ->scalarNode('deliver_every_mail_to')->defaultNull()->end()
-
-                ->arrayNode('from_email')
-                    ->children()
-                        ->scalarNode('sender_name')->end()
-                        ->scalarNode('address')->end()
-                    ->end()
-                ->end()
-
                 ->arrayNode('templates')
                     ->useAttributeAsKey('key')
                     ->arrayPrototype()

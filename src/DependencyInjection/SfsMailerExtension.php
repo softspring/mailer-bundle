@@ -25,13 +25,6 @@ class SfsMailerExtension extends Extension implements PrependExtensionInterface
 
         $container->setParameter('sfs_mailer.templates', $config['templates'] ?? []);
 
-        $container->setParameter('sfs_mailer.from_email.sender_name', $config['from_email']['sender_name'] ?? null);
-        $container->setParameter('sfs_mailer.from_email.address', $config['from_email']['address'] ?? null);
-
-        if ($config['from_email']['address'] ?? null) {
-            $loader->load('email_from_listener.yaml');
-        }
-
         $loader->load('services.yaml');
 
         if ($config['history']['enabled'] ?? false) {
@@ -42,11 +35,6 @@ class SfsMailerExtension extends Extension implements PrependExtensionInterface
             $container->setParameter('sfs_mailer.history.load_default_mapping', true);
             $container->setParameter('sfs_mailer.history.class', $config['history']['class']);
             $loader->load('history.yaml');
-        }
-
-        if ($config['deliver_every_mail_to']) {
-            $container->setParameter('sfs_mailer.deliver_every_mail_to', $config['deliver_every_mail_to']);
-            $loader->load('deliver_every_mail_to.yaml');
         }
     }
 

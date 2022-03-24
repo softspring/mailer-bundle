@@ -1,9 +1,0 @@
-services:
-    _defaults:
-        autowire: true
-        autoconfigure: true
-        public: false
-        bind:
-            $to: ['%sfs_mailer.deliver_every_mail_to%']
-
-    Softspring\MailerBundle\EventListener\DeliverMailsToListener: ~
