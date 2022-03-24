@@ -1,36 +1,33 @@
 {% trans_default_domain 'sfs_mailer' %}
 {% extends '@SfsMailer/admin_layout.html.twig' %}
 
+{% block title %}{{ 'admin_templates.send_test.page_title'|trans({'%templateName%':(template.id~'.name')|trans}) }}{% endblock title %}
+
 {% block breadcrums_content %}
     {{ parent() }}
-    <li class="breadcrumb-item">Mails</li>
-    <li class="breadcrumb-item"><a href="{{ url('sfs_mailer_templates_search') }}">Templates</a></li>
-    <li class="breadcrumb-item active" aria-current="page">Test template</li>
+    <li class="breadcrumb-item">{{ 'bundle.breadcrumb'|trans }}</li>
+    <li class="breadcrumb-item"><a href="{{ url('sfs_mailer_templates_search') }}">{{ 'admin_templates.list.breadcrumb'|trans }}</a></li>
+    <li class="breadcrumb-item"><a href="{{ url('sfs_mailer_templates_preview', {'template':template.id}) }}">{{ 'admin_templates.preview.breadcrumb'|trans({'%templateName%':(template.id~'.name')|trans}) }}</a></li>
+    <li class="breadcrumb-item active" aria-current="page">{{ 'admin_templates.send_test.breadcrumb'|trans({'%templateName%':(template.id~'.name')|trans}) }}</li>
 {% endblock breadcrums_content %}
 
 {% block content %}
-    <div class="d-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3">{{ (template.id~'.name')|trans }}</h1>
-    </div>
-
-    {{ form_start(form) }}
-    <div class="row">
-        <div class="col-6 col-lg">
-            {{ form_row(form.toName) }}
-        </div>
-        <div class="col-6 col-lg">
-            {{ form_row(form.toEmail) }}
-        </div>
-        <div class="col-6 col-lg">
-            {{ form_row(form.locale) }}
-        </div>
-        <div class="col-6 col-lg pt-2">
-            {{ form_widget(form) }}
-            <input type="submit" value="send" class="btn btn-primary mt-4"/>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                <h1 class="h3">{{ 'admin_templates.send_test.title'|trans({'%templateName%':(template.id~'.name')|trans}) }}</h1>
+            </div>
         </div>
     </div>
 
-
-    {{ form_rest(form) }}
-    {{ form_end(form) }}
+    <div class="container bg-white p-4 w-50">
+        {{ form_start(form) }}
+        {{ form_rest(form) }}
+            <button type="submit" class="btn btn-primary mt-4">{{ 'admin_templates.send_test.form.submit'|trans }}</button>
+            <a class="btn btn-outline-secondary mt-4" href="{{ url('sfs_mailer_templates_preview', {'template':template.id}) }}">{{ 'admin_templates.send_test.form.cancel'|trans }}</a>
+        {{ form_end(form) }}
+    </div>
 {% endblock content %}
+
+
+

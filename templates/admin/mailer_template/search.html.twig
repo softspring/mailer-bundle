@@ -1,12 +1,12 @@
 {% trans_default_domain 'sfs_mailer' %}
 {% extends '@SfsMailer/admin_layout.html.twig' %}
 
-{% block title %}{{ 'admin_templates.list.header_title'|trans }}{% endblock title %}
+{% block title %}{{ 'admin_templates.list.page_title'|trans }}{% endblock title %}
 
 {% block breadcrums_content %}
     {{ parent() }}
-    <li class="breadcrumb-item">Mails</li>
-    <li class="breadcrumb-item active" aria-current="page">Templates</li>
+    <li class="breadcrumb-item">{{ 'bundle.breadcrumb'|trans }}</li>
+    <li class="breadcrumb-item active" aria-current="page">{{ 'admin_templates.list.breadcrumb'|trans }}</li>
 {% endblock breadcrums_content %}
 
 {% block content %}
@@ -18,17 +18,17 @@
     {% embed '@SfsAdmin/components/table.html.twig' with {'collection':templates, 'append_classes' : 'row-link', 'pagination_route': false} %}
         {% trans_default_domain 'sfs_mailer' %}
         {% block ths %}
-            <th scope="col">{{ 'admin_templates.list.table.name.header'|trans }}</th>
-            <th scope="col">{{ 'admin_templates.list.table.description.header'|trans }}</th>
-            <th scope="col"></th>
+            <th scope="col" class="p-3">{{ 'admin_templates.list.table.name.header'|trans }}</th>
+            <th scope="col" class="p-3">{{ 'admin_templates.list.table.description.header'|trans }}</th>
+            <th scope="col" class="p-3"></th>
         {% endblock ths %}
 
         {% block tbody %}
             {% for template in templates %}
                 <tr {% if template.preview %}data-href="{{ url('sfs_mailer_templates_preview', {'template': template.id}) }}"{% endif %}>
-                    <td>{{ (template.id~'.name')|trans }}</td>
-                    <td>{{ template.description|default((template.id~'.description')|trans) }}</td>
-                    <td class="actions text-right">
+                    <td class="p-3">{{ (template.id~'.name')|trans }}</td>
+                    <td class="p-3">{{ template.description|default((template.id~'.description')|trans) }}</td>
+                    <td class="actions text-end p-3">
                         {% if template.preview %}
                             <a href="{{ url('sfs_mailer_templates_preview', {'template':template.id}) }}" class="text-nowrap">{{ 'admin_templates.list.table.preview.link'|trans }} <span class="mdi mdi-18px mdi-eye-outline align-middle"></span></a>
                         {% endif %}

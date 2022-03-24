@@ -14,6 +14,8 @@ class SendTestForm extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
+            'translation_domain' => 'sfs_mailer',
+            'label_format' => 'admin_templates.send_test.form.%name%.label',
             'locales' => ['en', 'es'],
         ]);
     }

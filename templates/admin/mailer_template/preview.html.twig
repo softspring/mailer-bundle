@@ -1,35 +1,44 @@
 {% trans_default_domain 'sfs_mailer' %}
 {% extends '@SfsMailer/admin_layout.html.twig' %}
 
+{% block title %}{{ 'admin_templates.preview.page_title'|trans({'%templateName%':(template.id~'.name')|trans}) }}{% endblock title %}
+
 {% block breadcrums_content %}
     {{ parent() }}
-    <li class="breadcrumb-item">Mails</li>
-    <li class="breadcrumb-item"><a href="{{ url('sfs_mailer_templates_search') }}">Templates</a></li>
-    <li class="breadcrumb-item active" aria-current="page">Preview template</li>
+    <li class="breadcrumb-item">{{ 'bundle.breadcrumb'|trans }}</li>
+    <li class="breadcrumb-item"><a href="{{ url('sfs_mailer_templates_search') }}">{{ 'admin_templates.list.breadcrumb'|trans }}</a></li>
+    <li class="breadcrumb-item active" aria-current="page">{{ 'admin_templates.preview.breadcrumb'|trans({'%templateName%':(template.id~'.name')|trans}) }}</li>
 {% endblock breadcrums_content %}
 
 {% block content %}
-    <div class="d-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3">{{ (template.id~'.name')|trans }}</h1>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                <h1 class="h3">{{ 'admin_templates.preview.title'|trans({'%templateName%':(template.id~'.name')|trans}) }}</h1>
+            </div>
 
-        <div class="dropdown show">
-            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                {{ preview_locale }}
-            </a>
-
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
-                {% for locale in locales|default(['es', 'en']) %}
-                    <a class="dropdown-item {{ locale == preview_locale ? 'font-weight-bold' : '' }}" href="{{ url(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')|merge({'locale':locale})) }}">{{ locale }}</a>
-                {% endfor %}
+            <div class="col text-end">
+                {% if locales|length > 1 %}
+                <div class="btn-group">
+                    <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                        {{ preview_locale }}
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        {% for locale in locales|default(['es', 'en']) %}
+                            <li>
+                                <a class="dropdown-item {{ locale == preview_locale ? 'font-weight-bold' : '' }}" href="{{ url(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')|merge({'locale':locale})) }}">{{ locale }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+                <a href="{{ url('sfs_mailer_templates_test', {'template': template.id}) }}" class="btn btn-outline-primary">{{ 'admin_templates.preview.actions.sendTest'|trans }}</a>
             </div>
         </div>
     </div>
 
-    <div class="text-right">
-        <a href="{{ url('sfs_mailer_templates_test', {'template': template.id}) }}" class="btn btn-outline-primary">Send test</a>
+    <div class="container bg-white p-4 w-50">
+        <h5>{{ 'admin_templates.preview.subject'|trans }}: {{ mail.getSubject }}</h5>
+        <iframe srcdoc="{{ mail.getHtmlBody }}" width="100%" height="500" class="border border-gray-300"></iframe>
     </div>
-
-    <h5>Subject: {{ mail.getSubject }}</h5>
-    <iframe srcdoc="{{ mail.getHtmlBody }}" width="100%" height="500" class="border border-gray-300"></iframe>
-
 {% endblock content %}

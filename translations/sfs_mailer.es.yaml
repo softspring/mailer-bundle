@@ -1,8 +1,11 @@
+bundle:
+    breadcrumb: "Emails"
+
 admin:
     history:
         list:
-            header_title: 'Historial de emails'
-            title: 'Historial de emails'
+            header_title: "Historial de emails"
+            title: "Historial de emails"
             table:
                 id.header: "ID"
                 subject.header: "Asunto"
@@ -15,13 +18,33 @@ admin:
 
 admin_templates:
     list:
-        header_title: 'Plantillas de email'
-        title: 'Plantillas de email'
+        page_title: "Plantillas de email"
+        title: "Plantillas de email"
+        breadcrumb: "Plantillas"
         table:
             id.header: "ID"
             name.header: "Plantilla"
             description.header: "Descripción"
             preview.link: "previsualizar"
+
+    preview:
+        page_title: "Previsualizar"
+        title: "Previsualizar"
+        breadcrumb: "%templateName%"
+        subject: "Asunto"
+        actions:
+            sendTest: "Enviar prueba"
+
+    send_test:
+        page_title: "Enviar prueba"
+        title: "Enviar prueba"
+        breadcrumb: "Enviar prueba"
+        form:
+            locale.label: "Idioma"
+            toEmail.label: "Para"
+            toName.label: "Nombre"
+            submit: "Enviar"
+            cancel: "Cancelar"
 
 message:
     status:

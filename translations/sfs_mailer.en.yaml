@@ -1,8 +1,11 @@
+bundle:
+    breadcrumb: "Mails"
+
 admin:
     history:
         list:
-            header_title: 'Mail history'
-            title: 'Mail history'
+            header_title: "Mail history"
+            title: "Mail history"
             table:
                 id.header: "ID"
                 subject.header: "Subject"
@@ -15,13 +18,33 @@ admin:
 
 admin_templates:
     list:
-        header_title: 'Mail templates'
-        title: 'Mail templates'
+        page_title: "Mail templates"
+        title: "Mail templates"
+        breadcrumb: "Templates"
         table:
             id.header: "ID"
             name.header: "Template"
             description.header: "Description"
             preview.link: "preview"
+
+    preview:
+        page_title: "Preview"
+        title: "Preview"
+        breadcrumb: "%templateName%"
+        subject: "Subject"
+        actions:
+            sendTest: "Test send"
+
+    send_test:
+        page_title: "Test send"
+        title: "Test send"
+        breadcrumb: "Test send"
+        form:
+            locale.label: "Language"
+            toEmail.label: "To"
+            toName.label: "Name"
+            submit: "Send"
+            cancel: "Cancel"
 
 message:
     status:

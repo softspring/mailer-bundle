@@ -54,7 +54,9 @@ class MailerTemplateController extends AbstractController
             'toName' => method_exists($this->getUser(), 'getName') ? $this->getUser()->getName() : '',
             'toEmail' => method_exists($this->getUser(), 'getEmail') ? $this->getUser()->getEmail() : '',
         ];
-        $form = $this->createForm(SendTestForm::class, $data, $this->locales)->handleRequest($request);
+        $form = $this->createForm(SendTestForm::class, $data, [
+            'locales' => $this->locales,
+        ])->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $formData = $form->getData();
@@ -102,7 +104,7 @@ class MailerTemplateController extends AbstractController
             throw new \RuntimeException(sprintf('%s mail class does not implements %s', $mailClass, ExampleEmailInterface::class));
         }
 
-        $mail = $mailClass::generateExample($this->translator, $locale = $request->get('locale', 'en'));
+        $mail = $mailClass::generateExample($this->translator, $locale = $request->get('locale', $request->getLocale()));
         $this->renderer->render($mail);
 
         return $this->render('@SfsMailer/admin/mailer_template/preview.html.twig', [
