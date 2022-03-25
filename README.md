@@ -1,20 +1,18 @@
+# Mailer Bundle
+
+[![Latest Stable Version](https://poser.pugx.org/softspring/core-bundle/v/stable.svg)](https://packagist.org/packages/softspring/core-bundle)
+[![Latest Unstable Version](https://poser.pugx.org/softspring/core-bundle/v/unstable.svg)](https://packagist.org/packages/softspring/core-bundle)
+[![License](https://poser.pugx.org/softspring/core-bundle/license.svg)](https://packagist.org/packages/softspring/core-bundle)
+[![PHP Version Require](http://poser.pugx.org/softspring/mailer-bundle/require/php)](https://packagist.org/packages/softspring/mailer-bundle)
+[![Total Downloads](https://poser.pugx.org/softspring/core-bundle/downloads)](https://packagist.org/packages/softspring/core-bundle)
+[![Build status](https://travis-ci.com/softspring/core-bundle.svg?branch=master)](https://app.travis-ci.com/github/softspring/core-bundle)
+
 This bundle provides some features that ease mailing for Symfony projects.
 
-*This bundle is under development, more features will be added soon, and existing ones may change.*
+## Documentation
 
-[![Latest Stable Version](https://poser.pugx.org/softspring/mailer-bundle/v/stable.svg)](https://packagist.org/packages/softspring/mailer-bundle)
-[![Latest Unstable Version](https://poser.pugx.org/softspring/mailer-bundle/v/unstable.svg)](https://packagist.org/packages/softspring/mailer-bundle)
-[![License](https://poser.pugx.org/softspring/mailer-bundle/license.svg)](https://packagist.org/packages/softspring/mailer-bundle)
-[![Total Downloads](https://poser.pugx.org/softspring/mailer-bundle/downloads)](https://packagist.org/packages/softspring/mailer-bundle)
-[![Build status](https://travis-ci.com/softspring/mailer-bundle.svg?branch=master)](https://app.travis-ci.com/github/softspring/mailer-bundle)
+* [1. Installation](docs/1_installation.md)
 
+## License
 
-# Installation
-
-## Applications that use Symfony Flex
-
-Open a command console, enter your project directory and execute:
-
-```console
-$ composer require softspring/mailer-bundle
-```
+This bundle is under the MIT license. See the complete license in the bundle [LICENSE](LICENSE) file.
