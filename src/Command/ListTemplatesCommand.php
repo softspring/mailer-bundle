@@ -29,13 +29,13 @@ class ListTemplatesCommand extends Command
         $this->setName('sfs_mailer:template:list');
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         /** @var Template $template */
         foreach ($this->templateLoader->getTemplateCollection()->getTemplates() as $key => $template) {
             $output->writeln(" - $key : {$template->getName()}");
         }
 
-        return 0;
+        return Command::SUCCESS;
     }
 }
