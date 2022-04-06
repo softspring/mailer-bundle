@@ -18,7 +18,7 @@ admin:
 
 admin_templates:
     list:
-        page_title: "Mail templates"
+        meta.title: "Mail templates"
         title: "Mail templates"
         breadcrumb: "Templates"
         table:
@@ -28,7 +28,7 @@ admin_templates:
             preview.link: "preview"
 
     preview:
-        page_title: "Preview"
+        meta.title: "Preview"
         title: "Preview"
         breadcrumb: "%templateName%"
         subject: "Subject"
@@ -36,7 +36,7 @@ admin_templates:
             sendTest: "Test send"
 
     send_test:
-        page_title: "Test send"
+        meta.title: "Test send"
         title: "Test send"
         breadcrumb: "Test send"
         form:

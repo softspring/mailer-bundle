@@ -1,7 +1,7 @@
 {% trans_default_domain 'sfs_mailer' %}
 {% extends '@SfsMailer/admin_layout.html.twig' %}
 
-{% block title %}{{ 'admin_templates.preview.page_title'|trans({'%templateName%':(template.id~'.name')|trans}) }}{% endblock title %}
+{% block title %}{{ 'admin_templates.preview.meta.title'|trans({'%templateName%':(template.id~'.name')|trans}) }}{% endblock title %}
 
 {% block breadcrums_content %}
     {{ parent() }}

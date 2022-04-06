@@ -18,7 +18,7 @@ admin:
 
 admin_templates:
     list:
-        page_title: "Plantillas de email"
+        meta.title: "Plantillas de email"
         title: "Plantillas de email"
         breadcrumb: "Plantillas"
         table:
@@ -28,7 +28,7 @@ admin_templates:
             preview.link: "previsualizar"
 
     preview:
-        page_title: "Previsualizar"
+        meta.title: "Previsualizar"
         title: "Previsualizar"
         breadcrumb: "%templateName%"
         subject: "Asunto"
@@ -36,7 +36,7 @@ admin_templates:
             sendTest: "Enviar prueba"
 
     send_test:
-        page_title: "Enviar prueba"
+        meta.title: "Enviar prueba"
         title: "Enviar prueba"
         breadcrumb: "Enviar prueba"
         form:
