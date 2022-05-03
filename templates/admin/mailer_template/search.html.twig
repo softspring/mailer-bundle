@@ -14,7 +14,7 @@
         <h1 class="h3">{{ 'admin_templates.list.title'|trans }}</h1>
     </div>
 
-    <div class="container bg-white p-4">
+    <div class="container-fluid bg-white p-4">
     {% embed '@SfsAdmin/components/table.html.twig' with {'collection':templates, 'append_classes' : 'row-link', 'pagination_route': false} %}
         {% trans_default_domain 'sfs_mailer' %}
         {% block ths %}

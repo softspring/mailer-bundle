@@ -12,12 +12,9 @@
 
 {% block content %}
     <div class="container-fluid">
-        <div class="row">
-            <div class="col">
-                <h1 class="h3">{{ 'admin_templates.preview.title'|trans({'%templateName%':(template.id~'.name')|trans}) }}</h1>
-            </div>
-
-            <div class="col text-end">
+        <div class="d-flex justify-content-between">
+            <h1 class="h3">{{ 'admin_templates.preview.title'|trans({'%templateName%':(template.id~'.name')|trans}) }}</h1>
+            <div class="ms-3">
                 {% if locales|length > 1 %}
                 <div class="btn-group">
                     <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
@@ -36,9 +33,10 @@
             </div>
         </div>
     </div>
-
-    <div class="container bg-white p-4 w-50">
-        <h5>{{ 'admin_templates.preview.subject'|trans }}: {{ mail.getSubject }}</h5>
-        <iframe srcdoc="{{ mail.getHtmlBody }}" width="100%" height="500" class="border border-gray-300"></iframe>
+    <div class="row justify-content-center mt-4">
+        <div class="bg-white p-4 col-12 col-md-8 col-xl-6">
+            <h5>{{ 'admin_templates.preview.subject'|trans }}: {{ mail.getSubject }}</h5>
+            <iframe srcdoc="{{ mail.getHtmlBody }}" width="100%" height="500" class="border border-gray-300"></iframe>
+        </div>
     </div>
 {% endblock content %}
