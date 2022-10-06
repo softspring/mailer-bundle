@@ -19,9 +19,6 @@ class MailerHistoryController extends AbstractController
         ]);
     }
 
-    /**
-     * @param $messageId
-     */
     public function details($messageId, Request $request): Response
     {
         $mail = $this->getRepository()->findOneById($messageId);

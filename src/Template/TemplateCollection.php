@@ -30,9 +30,6 @@ class TemplateCollection
         return $this->templates;
     }
 
-    /**
-     * @param $id
-     */
     public function getTemplate($id): ?Template
     {
         return $this->templates[$id] ?? null;
