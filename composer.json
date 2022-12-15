@@ -10,13 +10,13 @@
         "softspring/admin-bundle": "^5.0",
         "softspring/core-bundle": "^5.0",
         "softspring/mime-translatable": "^5.0",
-        "symfony/mailer": "^5.4 || ^6.0"
+        "symfony/mailer": "^5.4|^6.0"
     },
     "require-dev": {
-        "symfony/console": "^5.4 || ^6.0",
-        "symfony/framework-bundle": "^5.4 || ^6.0",
-        "symfony/translation": "^5.4 || ^6.0",
-        "symfony/yaml": "^5.4 || ^6.0",
+        "symfony/console": "^5.4|^6.0",
+        "symfony/framework-bundle": "^5.4|^6.0",
+        "symfony/translation": "^5.4|^6.0",
+        "symfony/yaml": "^5.4|^6.0",
         "twig/twig": "*",
         "friendsofphp/php-cs-fixer": "9999999-dev"
     },
