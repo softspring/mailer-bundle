@@ -6,25 +6,13 @@ use Softspring\MailerBundle\Mime\TranslatableEmail;
 
 class Template
 {
-    /**
-     * @var string|null
-     */
-    protected $id;
+    protected ?string $id;
 
-    /**
-     * @var string|null
-     */
-    protected $description;
+    protected ?string $description;
 
-    /**
-     * @var string|null
-     */
-    protected $class = TranslatableEmail::class;
+    protected ?string $class = TranslatableEmail::class;
 
-    /**
-     * @var bool
-     */
-    protected $preview = false;
+    protected bool $preview = false;
 
     public function __toString(): string
     {

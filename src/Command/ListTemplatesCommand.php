@@ -10,14 +10,8 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class ListTemplatesCommand extends Command
 {
-    /**
-     * @var TemplateLoader
-     */
-    protected $templateLoader;
+    protected TemplateLoader $templateLoader;
 
-    /**
-     * DebugTemplatesCommand constructor.
-     */
     public function __construct(TemplateLoader $templateLoader)
     {
         $this->templateLoader = $templateLoader;
@@ -33,7 +27,7 @@ class ListTemplatesCommand extends Command
     {
         /** @var Template $template */
         foreach ($this->templateLoader->getTemplateCollection()->getTemplates() as $key => $template) {
-            $output->writeln(" - $key : {$template->getName()}");
+            $output->writeln(" - $key : {$template->getId()}");
         }
 
         return Command::SUCCESS;

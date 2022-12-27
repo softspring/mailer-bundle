@@ -2,8 +2,6 @@
 
 namespace Softspring\MailerBundle\Model;
 
-use Swift_Mime_SimpleMessage;
-
 interface EmailHistoryInterface
 {
     public const STATUS_PENDING = 1;
@@ -14,12 +12,12 @@ interface EmailHistoryInterface
     public function getId(): string;
 
     /**
-     * @return Swift_Mime_SimpleMessage
+     * @return \Swift_Mime_SimpleMessage
      */
     public function getMessage();
 
     /**
-     * @param Swift_Mime_SimpleMessage $message
+     * @param \Swift_Mime_SimpleMessage $message
      */
     public function setMessage($message): bool;
 

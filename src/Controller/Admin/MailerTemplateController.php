@@ -6,6 +6,8 @@ use Softspring\Component\MimeTranslatable\ExampleEmailInterface;
 use Softspring\MailerBundle\Form\Admin\SendTestForm;
 use Softspring\MailerBundle\Mime\TranslatableBodyRenderer;
 use Softspring\MailerBundle\Template\TemplateLoader;
+use Softspring\UserBundle\Model\NameSurnameInterface;
+use Softspring\UserBundle\Model\UserWithEmailInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
@@ -49,10 +51,13 @@ class MailerTemplateController extends AbstractController
             return $this->redirectToRoute('sfs_mailer_history_search');
         }
 
+        /** @var NameSurnameInterface|UserWithEmailInterface $user */
+        $user = $this->getUser();
+
         $data = [
             'locale' => $request->getLocale(),
-            'toName' => method_exists($this->getUser(), 'getName') ? $this->getUser()->getName() : '',
-            'toEmail' => method_exists($this->getUser(), 'getEmail') ? $this->getUser()->getEmail() : '',
+            'toName' => $user instanceof NameSurnameInterface ? $user->getName() : '',
+            'toEmail' => $user instanceof UserWithEmailInterface ? $user->getEmail() : '',
         ];
         $form = $this->createForm(SendTestForm::class, $data, [
             'locales' => $this->locales,

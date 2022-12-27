@@ -7,18 +7,24 @@
     "prefer-stable": true,
     "require": {
         "php": ">=8.0",
+        "doctrine/doctrine-bundle": "^2.5",
+        "doctrine/orm": "^2.10",
         "softspring/admin-bundle": "^5.0",
         "softspring/core-bundle": "^5.0",
         "softspring/mime-translatable": "^5.0",
+        "symfony/form": "^5.4|^6.0",
         "symfony/mailer": "^5.4|^6.0"
     },
     "require-dev": {
+        "friendsofphp/php-cs-fixer": "9999999-dev",
+        "phpstan/phpstan": "^1.9",
+        "softspring/user-bundle": "^5.0",
+        "swiftmailer/swiftmailer": "^6.3",
         "symfony/console": "^5.4|^6.0",
         "symfony/framework-bundle": "^5.4|^6.0",
         "symfony/translation": "^5.4|^6.0",
         "symfony/yaml": "^5.4|^6.0",
-        "twig/twig": "*",
-        "friendsofphp/php-cs-fixer": "9999999-dev"
+        "twig/twig": "*"
     },
     "suggest": {
         "softspring/admin-bundle": "Use softspring admin templates",
@@ -30,6 +36,7 @@
             "Softspring\\MailerBundle\\": "src/"
         }
     },
-    "extra": {
+    "config": {
+        "sort-packages": true
     }
 }
