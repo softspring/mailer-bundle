@@ -11,6 +11,7 @@
         "doctrine/orm": "^2.10",
         "softspring/admin-bundle": "^5.0",
         "softspring/core-bundle": "^5.0",
+        "softspring/doctrine-target-entity-resolver": "^5.0",
         "softspring/mime-translatable": "^5.0",
         "symfony/form": "^5.4|^6.0",
         "symfony/mailer": "^5.4|^6.0"

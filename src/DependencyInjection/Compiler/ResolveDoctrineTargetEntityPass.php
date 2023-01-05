@@ -2,7 +2,7 @@
 
 namespace Softspring\MailerBundle\DependencyInjection\Compiler;
 
-use Softspring\CoreBundle\DependencyInjection\Compiler\AbstractResolveDoctrineTargetEntityPass;
+use Softspring\Component\DoctrineTargetEntityResolver\DependencyInjection\Compiler\AbstractResolveDoctrineTargetEntityPass;
 use Softspring\MailerBundle\Model\EmailHistoryInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
