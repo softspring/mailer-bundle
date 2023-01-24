@@ -15,7 +15,7 @@
     </div>
 
     <div class="container-fluid bg-white p-4">
-    {% embed '@SfsAdmin/components/table.html.twig' with {'collection':templates, 'append_classes' : 'row-link', 'pagination_route': false} %}
+    {% embed '@SfsComponents/paginator/table.html.twig' with {'collection':templates, 'append_classes' : 'row-link', 'pagination_route': false} %}
         {% trans_default_domain 'sfs_mailer' %}
         {% block ths %}
             <th scope="col">{{ 'admin_templates.list.table.name.header'|trans }}</th>
