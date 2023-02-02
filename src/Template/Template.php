@@ -6,9 +6,9 @@ use Softspring\MailerBundle\Mime\TranslatableEmail;
 
 class Template
 {
-    protected ?string $id;
+    protected ?string $id = null;
 
-    protected ?string $description;
+    protected ?string $description = null;
 
     protected ?string $class = TranslatableEmail::class;
 
