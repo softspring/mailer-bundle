@@ -5,7 +5,7 @@
 [![License](https://poser.pugx.org/softspring/mailer-bundle/license.svg)](https://packagist.org/packages/softspring/mailer-bundle)
 [![PHP Version Require](http://poser.pugx.org/softspring/mailer-bundle/require/php)](https://packagist.org/packages/softspring/mailer-bundle)
 [![Total Downloads](https://poser.pugx.org/softspring/mailer-bundle/downloads)](https://packagist.org/packages/softspring/mailer-bundle)
-[![Build status](https://github.com/softspring/mailer-bundle/actions/workflows/php.yml/badge.svg?branch=5.0)](https://github.com/softspring/mailer-bundle/actions/workflows/php.yml)
+[![Build status](https://github.com/softspring/mailer-bundle/actions/workflows/php.yml/badge.svg?branch=5.1)](https://github.com/softspring/mailer-bundle/actions/workflows/php.yml)
 
 This bundle provides some features that ease mailing for Symfony projects.
 
