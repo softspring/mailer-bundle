@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## [4.1.0](https://github.com/softspring/mailer-bundle/releases/tag/4.1.0) (07 mar 2022)
+## [v5.0.5](https://github.com/softspring/mailer-bundle/releases/tag/v5.0.5)
 
 ### Upgrading
 
@@ -8,14 +8,31 @@
 
 ### Commits
 
-- 58ac6f5 Remove dev version in composer.json file
-- a64dc97 Use framework enabled_locales
-- e6c2f08 Configure new 4.1-dev version to main branch in composer.json file
-- b0cc9c7 Fix unneeded service binding
-- 3d8869b Remove dev version in composer.json file
+- [2f11c94](https://github.com/softspring/mailer-bundle/commit/2f11c94929544e499886c05e82afaa28ff85cd11): Update changelog
 
 ### Changes
 
- config/services/email_from_listener.yaml | 1 +
- config/services/services.yaml            | 2 +-
- 2 files changed, 2 insertions(+), 1 deletion(-)
+```
+ CHANGELOG.md | 26 +++++++++++++-------------
+ 1 file changed, 13 insertions(+), 13 deletions(-)
+```
+
+## [v5.0.4](https://github.com/softspring/mailer-bundle/releases/tag/v5.0.4)
+
+*Nothing has changed since last v5.0.3 version*
+
+## [v5.0.3](https://github.com/softspring/mailer-bundle/releases/tag/v5.0.3)
+
+*Nothing has changed since last v5.0.2 version*
+
+## [v5.0.2](https://github.com/softspring/mailer-bundle/releases/tag/v5.0.2)
+
+*Nothing has changed since last v5.0.1 version*
+
+## [v5.0.1](https://github.com/softspring/mailer-bundle/releases/tag/v5.0.1)
+
+*Nothing has changed since last v5.0.0 version*
+
+## [v5.0.0](https://github.com/softspring/mailer-bundle/releases/tag/v5.0.0)
+
+*Previous versions are not in changelog*
