@@ -28,12 +28,12 @@ class ParameterTemplateLoader implements TemplateLoaderInterface
 
         foreach ($this->templatesConfig as $templateKey => $templateConfig) {
             $template->setId($templateKey);
-//            $template->setTwigTemplate($templateConfig['template']);
-//            $template->setSubjectBlockName($templateConfig['subject_block']);
-//            $template->setHtmlBlockName($templateConfig['html_block']);
-//            $template->setTextBlockName($templateConfig['text_block']);
-//            $template->setFromName($templateConfig['from_email']['sender_name']);
-//            $template->setFromEmail($templateConfig['from_email']['address']);
+            //            $template->setTwigTemplate($templateConfig['template']);
+            //            $template->setSubjectBlockName($templateConfig['subject_block']);
+            //            $template->setHtmlBlockName($templateConfig['html_block']);
+            //            $template->setTextBlockName($templateConfig['text_block']);
+            //            $template->setFromName($templateConfig['from_email']['sender_name']);
+            //            $template->setFromEmail($templateConfig['from_email']['address']);
 
             $collection->addTemplate($template);
         }
