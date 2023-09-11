@@ -18,7 +18,7 @@ class ListTemplatesCommand extends Command
         parent::__construct();
     }
 
-    protected function configure()
+    protected function configure(): void
     {
         $this->setName('sfs_mailer:template:list');
     }

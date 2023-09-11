@@ -13,7 +13,7 @@ class ResolveDoctrineTargetEntityPass extends AbstractResolveDoctrineTargetEntit
         return $container->getParameter('sfs_mailer.entity_manager_name');
     }
 
-    public function process(ContainerBuilder $container)
+    public function process(ContainerBuilder $container): void
     {
         $this->setTargetEntityFromParameter('sfs_mailer.history.class', EmailHistoryInterface::class, $container, false);
     }
