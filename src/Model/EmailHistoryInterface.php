@@ -25,14 +25,8 @@ interface EmailHistoryInterface
 
     public function setStatus(int $status): void;
 
-    /**
-     * @return string
-     */
     public function getTemplateId(): ?string;
 
-    /**
-     * @param string $templateId
-     */
     public function setTemplateId(?string $templateId): void;
 
     public function getCreatedAt(): ?\DateTime;
