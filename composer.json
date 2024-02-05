@@ -10,7 +10,7 @@
         "doctrine/doctrine-bundle": "^2.5",
         "doctrine/orm": "^2.10",
         "softspring/components": "^5.2",
-        "softspring/doctrine-target-entity-resolver": "^5.2",
+        "softspring/doctrine-target-entity-resolver": "^5.1",
         "softspring/mime-translatable": "^5.2",
         "symfony/form": "^5.4|^6.0|^7.0",
         "symfony/mailer": "^5.4|^6.0|^7.0"
