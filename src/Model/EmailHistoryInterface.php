@@ -2,6 +2,9 @@
 
 namespace Softspring\MailerBundle\Model;
 
+use DateTime;
+use Swift_Mime_SimpleMessage;
+
 interface EmailHistoryInterface
 {
     public const STATUS_PENDING = 1;
@@ -12,12 +15,12 @@ interface EmailHistoryInterface
     public function getId(): string;
 
     /**
-     * @return \Swift_Mime_SimpleMessage
+     * @return Swift_Mime_SimpleMessage
      */
     public function getMessage();
 
     /**
-     * @param \Swift_Mime_SimpleMessage $message
+     * @param Swift_Mime_SimpleMessage $message
      */
     public function setMessage($message): bool;
 
@@ -29,7 +32,7 @@ interface EmailHistoryInterface
 
     public function setTemplateId(?string $templateId): void;
 
-    public function getCreatedAt(): ?\DateTime;
+    public function getCreatedAt(): ?DateTime;
 
-    public function setCreatedAt(?\DateTime $createdAt): void;
+    public function setCreatedAt(?DateTime $createdAt): void;
 }

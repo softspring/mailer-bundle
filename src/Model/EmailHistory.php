@@ -2,6 +2,10 @@
 
 namespace Softspring\MailerBundle\Model;
 
+use DateTime;
+use DateTimeInterface;
+use Swift_Mime_SimpleMessage;
+
 /**
  * Class EmailHistory.
  */
@@ -13,7 +17,7 @@ class EmailHistory implements EmailHistoryInterface
 
     protected ?string $templateId;
 
-    protected ?\Swift_Mime_SimpleMessage $message;
+    protected ?Swift_Mime_SimpleMessage $message;
 
     protected int $createdAt;
 
@@ -82,14 +86,14 @@ class EmailHistory implements EmailHistoryInterface
         return $this->getMessage()->getReplyTo() ?: null;
     }
 
-    public function getMessageDate(): ?\DateTimeInterface
+    public function getMessageDate(): ?DateTimeInterface
     {
         return $this->getMessage()->getDate();
     }
 
     public function getMessageBody(): ?string
     {
-        if (!$this->getMessage() instanceof \Swift_Mime_SimpleMessage) {
+        if (!$this->getMessage() instanceof Swift_Mime_SimpleMessage) {
             return null;
         }
 
@@ -98,7 +102,7 @@ class EmailHistory implements EmailHistoryInterface
 
     public function getMessageBodyHtml(): ?string
     {
-        if (!$this->getMessage() instanceof \Swift_Mime_SimpleMessage) {
+        if (!$this->getMessage() instanceof Swift_Mime_SimpleMessage) {
             return null;
         }
 
@@ -111,7 +115,7 @@ class EmailHistory implements EmailHistoryInterface
 
     public function getMessageBodyText(): ?string
     {
-        if (!$this->getMessage() instanceof \Swift_Mime_SimpleMessage) {
+        if (!$this->getMessage() instanceof Swift_Mime_SimpleMessage) {
             return null;
         }
 
@@ -122,23 +126,23 @@ class EmailHistory implements EmailHistoryInterface
         return null;
     }
 
-    public function getCreatedAt(): ?\DateTime
+    public function getCreatedAt(): ?DateTime
     {
-        return \DateTime::createFromFormat('U', "{$this->createdAt}") ?: null;
+        return DateTime::createFromFormat('U', "{$this->createdAt}") ?: null;
     }
 
-    public function setCreatedAt(?\DateTime $createdAt): void
+    public function setCreatedAt(?DateTime $createdAt): void
     {
-        $this->createdAt = $createdAt instanceof \DateTime ? (int) $createdAt->format('U') : null;
+        $this->createdAt = $createdAt instanceof DateTime ? (int) $createdAt->format('U') : null;
     }
 
-    public function getLastStatusAt(): ?\DateTime
+    public function getLastStatusAt(): ?DateTime
     {
-        return \DateTime::createFromFormat('U', "{$this->lastStatusAt}") ?: null;
+        return DateTime::createFromFormat('U', "{$this->lastStatusAt}") ?: null;
     }
 
-    public function setLastStatusAt(?\DateTime $lastStatusAt): void
+    public function setLastStatusAt(?DateTime $lastStatusAt): void
     {
-        $this->lastStatusAt = $lastStatusAt instanceof \DateTime ? (int) $lastStatusAt->format('U') : null;
+        $this->lastStatusAt = $lastStatusAt instanceof DateTime ? (int) $lastStatusAt->format('U') : null;
     }
 }

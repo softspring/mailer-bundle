@@ -2,6 +2,8 @@
 
 namespace Softspring\MailerBundle\Controller\Admin;
 
+use ReflectionClass;
+use RuntimeException;
 use Softspring\Component\MimeTranslatable\ExampleEmailInterface;
 use Softspring\MailerBundle\Form\Admin\SendTestForm;
 use Softspring\MailerBundle\Mime\TranslatableBodyRenderer;
@@ -71,8 +73,8 @@ class MailerTemplateController extends AbstractController
                 /** @var ExampleEmailInterface|string $mailClass */
                 $mailClass = $template->getClass();
 
-                if (!(new \ReflectionClass($mailClass))->implementsInterface(ExampleEmailInterface::class)) {
-                    throw new \RuntimeException(sprintf('%s mail class does not implements %s', $mailClass, ExampleEmailInterface::class));
+                if (!(new ReflectionClass($mailClass))->implementsInterface(ExampleEmailInterface::class)) {
+                    throw new RuntimeException(sprintf('%s mail class does not implements %s', $mailClass, ExampleEmailInterface::class));
                 }
 
                 $mail = $mailClass::generateExample($this->translator, $locale)
@@ -105,8 +107,8 @@ class MailerTemplateController extends AbstractController
         /** @var ExampleEmailInterface|string $mailClass */
         $mailClass = $template->getClass();
 
-        if (!(new \ReflectionClass($mailClass))->implementsInterface(ExampleEmailInterface::class)) {
-            throw new \RuntimeException(sprintf('%s mail class does not implements %s', $mailClass, ExampleEmailInterface::class));
+        if (!(new ReflectionClass($mailClass))->implementsInterface(ExampleEmailInterface::class)) {
+            throw new RuntimeException(sprintf('%s mail class does not implements %s', $mailClass, ExampleEmailInterface::class));
         }
 
         $mail = $mailClass::generateExample($this->translator, $locale = $request->get('locale', $request->getLocale()));
