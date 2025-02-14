@@ -2,7 +2,7 @@
     "name": "softspring/mailer-bundle",
     "description": "This bundle provides some features that ease mailing for Symfony projects.",
     "type": "symfony-bundle",
-    "license": "MIT",
+    "license": "AGPL-3.0",
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
