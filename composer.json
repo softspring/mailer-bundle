@@ -7,8 +7,8 @@
     "prefer-stable": true,
     "require": {
         "php": ">=8.4",
-        "doctrine/doctrine-bundle": "^2.5",
-        "doctrine/orm": "^2.10 | ^3.0",
+        "doctrine/doctrine-bundle": "^2.10|^3.0|^4.0",
+        "doctrine/orm": "^2.10|^3.0|^4.0",
         "softspring/components": "^6.0@dev",
         "softspring/doctrine-target-entity-resolver": "^6.0@dev",
         "softspring/mime-translatable": "^6.0@dev",
@@ -16,9 +16,9 @@
         "symfony/mailer": "^6.4|^7.4|^8.0"
     },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "^3.89",
+        "friendsofphp/php-cs-fixer": "^3.94",
         "phpstan/phpstan": "^2.1",
-        "rector/rector": "^2.2",
+        "rector/rector": "^2.3",
         "softspring/user-bundle": "^6.0@dev",
         "swiftmailer/swiftmailer": "^6.3",
         "symfony/console": "^6.4|^7.4|^8.0",
@@ -43,10 +43,10 @@
     "scripts": {
         "fix": [
             "vendor/bin/rector process src tests",
-            "vendor/bin/php-cs-fixer fix --diff",
+            "vendor/bin/php-cs-fixer fix",
             "composer normalize"
         ],
-        "run-tests" : [
+        "run-tests": [
             "composer validate --strict --no-check-lock --ansi",
             "XDEBUG_MODE=coverage vendor/bin/phpunit",
             "vendor/bin/rector process src tests --dry-run",
@@ -64,5 +64,10 @@
             "composer update --no-scripts --ansi --prefer-lowest --prefer-stable",
             "@run-tests"
         ]
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-6.0": "6.0.x-dev"
+        }
     }
 }
