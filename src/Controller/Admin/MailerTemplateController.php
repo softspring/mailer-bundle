@@ -3,10 +3,12 @@
 namespace Softspring\MailerBundle\Controller\Admin;
 
 use ReflectionClass;
+use ReflectionException;
 use RuntimeException;
 use Softspring\Component\MimeTranslatable\ExampleEmailInterface;
 use Softspring\MailerBundle\Form\Admin\SendTestForm;
 use Softspring\MailerBundle\Mime\TranslatableBodyRenderer;
+use Softspring\MailerBundle\Template\Template;
 use Softspring\MailerBundle\Template\TemplateLoader;
 use Softspring\UserBundle\Model\NameSurnameInterface;
 use Softspring\UserBundle\Model\UserWithEmailInterface;
@@ -14,8 +16,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Address;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Twig\Error\LoaderError;
 
@@ -45,15 +49,19 @@ class MailerTemplateController extends AbstractController
         ]);
     }
 
+    /**
+     * @throws ReflectionException
+     * @throws TransportExceptionInterface
+     */
     public function test(string $template, Request $request): Response
     {
         $template = $this->templateLoader->getTemplateCollection()->getTemplate($template);
 
-        if (!$template) {
+        if (!$template instanceof Template) {
             return $this->redirectToRoute('sfs_mailer_history_search');
         }
 
-        /** @var NameSurnameInterface|UserWithEmailInterface $user */
+        /** @var UserInterface&(NameSurnameInterface|UserWithEmailInterface) $user */
         $user = $this->getUser();
 
         $data = [
@@ -70,13 +78,13 @@ class MailerTemplateController extends AbstractController
             ['toEmail' => $toEmail, 'toName' => $toName, 'locale' => $locale] = $formData;
 
             try {
-                /** @var ExampleEmailInterface|string $mailClass */
                 $mailClass = $template->getClass();
 
-                if (!(new ReflectionClass($mailClass))->implementsInterface(ExampleEmailInterface::class)) {
+                if (!new ReflectionClass($mailClass)->implementsInterface(ExampleEmailInterface::class)) {
                     throw new RuntimeException(sprintf('%s mail class does not implements %s', $mailClass, ExampleEmailInterface::class));
                 }
 
+                /** @var ExampleEmailInterface $mailClass */
                 $mail = $mailClass::generateExample($this->translator, $locale)
                     ->to(new Address($toEmail, $toName))
                 ;
@@ -91,27 +99,30 @@ class MailerTemplateController extends AbstractController
 
         return $this->render('@SfsMailer/admin/mailer_template/test.html.twig', [
             'template' => $template,
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 
+    /**
+     * @throws ReflectionException
+     */
     public function preview(string $template, Request $request): Response
     {
         $template = $this->templateLoader->getTemplateCollection()->getTemplate($template);
 
-        if (!$template) {
+        if (!$template instanceof Template) {
             // not found
             return $this->redirectToRoute('sfs_mailer_history_search');
         }
 
-        /** @var ExampleEmailInterface|string $mailClass */
         $mailClass = $template->getClass();
 
-        if (!(new ReflectionClass($mailClass))->implementsInterface(ExampleEmailInterface::class)) {
+        if (!new ReflectionClass($mailClass)->implementsInterface(ExampleEmailInterface::class)) {
             throw new RuntimeException(sprintf('%s mail class does not implements %s', $mailClass, ExampleEmailInterface::class));
         }
 
-        $mail = $mailClass::generateExample($this->translator, $locale = $request->get('locale', $request->getLocale()));
+        /** @var ExampleEmailInterface $mailClass */
+        $mail = $mailClass::generateExample($this->translator, $locale = $request->query->get('locale', $request->getLocale()));
         $this->renderer->render($mail);
 
         return $this->render('@SfsMailer/admin/mailer_template/preview.html.twig', [

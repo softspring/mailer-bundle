@@ -4,7 +4,6 @@ namespace Softspring\MailerBundle\Model;
 
 use DateTime;
 use DateTimeInterface;
-use Swift_Mime_SimpleMessage;
 
 /**
  * Class EmailHistory.
@@ -17,13 +16,13 @@ class EmailHistory implements EmailHistoryInterface
 
     protected ?string $templateId;
 
-    protected ?Swift_Mime_SimpleMessage $message;
+    protected ?string $message;
 
     protected int $createdAt;
 
     protected int $lastStatusAt;
 
-    public function __toString()
+    public function __toString(): string
     {
         return "{$this->getId()}";
     }
@@ -33,7 +32,7 @@ class EmailHistory implements EmailHistoryInterface
         return $this->id;
     }
 
-    public function getMessage()
+    public function getMessage(): ?object
     {
         return unserialize($this->message);
     }
@@ -45,7 +44,6 @@ class EmailHistory implements EmailHistoryInterface
 
     public function setMessage($message): bool
     {
-        /* @phpstan-ignore-next-line */
         $this->message = serialize($message);
 
         return true;
@@ -93,7 +91,7 @@ class EmailHistory implements EmailHistoryInterface
 
     public function getMessageBody(): ?string
     {
-        if (!$this->getMessage() instanceof Swift_Mime_SimpleMessage) {
+        if (!is_object($this->getMessage())) {
             return null;
         }
 
@@ -102,7 +100,7 @@ class EmailHistory implements EmailHistoryInterface
 
     public function getMessageBodyHtml(): ?string
     {
-        if (!$this->getMessage() instanceof Swift_Mime_SimpleMessage) {
+        if (!is_object($this->getMessage())) {
             return null;
         }
 
@@ -115,7 +113,7 @@ class EmailHistory implements EmailHistoryInterface
 
     public function getMessageBodyText(): ?string
     {
-        if (!$this->getMessage() instanceof Swift_Mime_SimpleMessage) {
+        if (!is_object($this->getMessage())) {
             return null;
         }
 

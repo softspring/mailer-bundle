@@ -7,10 +7,7 @@ use Softspring\MailerBundle\Template\TemplateCollection;
 
 class ParameterTemplateLoader implements TemplateLoaderInterface
 {
-    /**
-     * @var array
-     */
-    protected $templatesConfig;
+    protected array $templatesConfig;
 
     /**
      * ParameterTemplateLoader constructor.
@@ -26,7 +23,7 @@ class ParameterTemplateLoader implements TemplateLoaderInterface
 
         $template = new Template();
 
-        foreach ($this->templatesConfig as $templateKey => $templateConfig) {
+        foreach (array_keys($this->templatesConfig) as $templateKey) {
             $template->setId($templateKey);
             //            $template->setTwigTemplate($templateConfig['template']);
             //            $template->setSubjectBlockName($templateConfig['subject_block']);

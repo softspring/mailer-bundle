@@ -28,10 +28,7 @@ class SfsMailerBundle extends Bundle
         $container->addCompilerPass(new TemplateLoadersCompilerPass());
     }
 
-    /**
-     * @param string|bool $enablingParameter
-     */
-    private function addRegisterMappingsPass(ContainerBuilder $container, array $mappings, $enablingParameter = false)
+    private function addRegisterMappingsPass(ContainerBuilder $container, array $mappings, string|bool $enablingParameter = false): void
     {
         $container->addCompilerPass(DoctrineOrmMappingsPass::createXmlMappingDriver($mappings, ['sfs_mailer_em'], $enablingParameter));
     }

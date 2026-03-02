@@ -3,7 +3,6 @@
 namespace Softspring\MailerBundle\Model;
 
 use DateTime;
-use Swift_Mime_SimpleMessage;
 
 interface EmailHistoryInterface
 {
@@ -14,14 +13,8 @@ interface EmailHistoryInterface
 
     public function getId(): string;
 
-    /**
-     * @return Swift_Mime_SimpleMessage
-     */
     public function getMessage();
 
-    /**
-     * @param Swift_Mime_SimpleMessage $message
-     */
     public function setMessage($message): bool;
 
     public function getStatus(): int;

@@ -7,10 +7,7 @@ use Symfony\Contracts\EventDispatcher\Event;
 
 class EmailHistoryEvent extends Event
 {
-    /**
-     * @var EmailHistoryInterface
-     */
-    protected $emailHistory;
+    protected EmailHistoryInterface $emailHistory;
 
     /**
      * EmailHistoryEvent constructor.

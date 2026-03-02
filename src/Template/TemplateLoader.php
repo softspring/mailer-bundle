@@ -6,10 +6,7 @@ use Softspring\MailerBundle\Template\Loader\TemplateLoaderInterface;
 
 class TemplateLoader
 {
-    /**
-     * @var TemplateCollection
-     */
-    protected $templateCollection;
+    protected TemplateCollection $templateCollection;
 
     /**
      * TemplateMailer constructor.

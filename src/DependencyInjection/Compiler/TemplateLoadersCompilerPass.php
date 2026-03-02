@@ -16,7 +16,7 @@ class TemplateLoadersCompilerPass implements CompilerPassInterface
         $taggedServices = $container->findTaggedServiceIds('sfs_mailer.template_loader');
 
         $loaderReferences = [];
-        foreach ($taggedServices as $id => $attributes) {
+        foreach (array_keys($taggedServices) as $id) {
             $loaderReferences[] = new Reference($id);
         }
 

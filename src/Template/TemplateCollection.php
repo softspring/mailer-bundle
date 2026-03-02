@@ -7,17 +7,9 @@ class TemplateCollection
     /**
      * @var Template[]
      */
-    protected $templates;
+    protected array $templates = [];
 
-    /**
-     * TemplatesCollection constructor.
-     */
-    public function __construct()
-    {
-        $this->templates = [];
-    }
-
-    public function addTemplate(Template $template)
+    public function addTemplate(Template $template): void
     {
         $this->templates[$template->getId()] = $template;
     }
@@ -35,7 +27,7 @@ class TemplateCollection
         return $this->templates[$id] ?? null;
     }
 
-    public function appendCollection(TemplateCollection $collection)
+    public function appendCollection(TemplateCollection $collection): void
     {
         foreach ($collection->getTemplates() as $key => $template) {
             $this->templates[$key] = $template;
