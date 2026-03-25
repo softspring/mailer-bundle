@@ -7,11 +7,27 @@
 ![Downloads](https://img.shields.io/packagist/dt/softspring/mailer-bundle?style=flat-square)
 [![CI](https://img.shields.io/github/actions/workflow/status/softspring/mailer-bundle/ci.yml?branch=6.0&style=flat-square&label=CI)](https://github.com/softspring/mailer-bundle/actions/workflows/ci.yml)
 
-This bundle provides some features that ease mailing for Symfony projects.
+Shared mail template and preview infrastructure for Symfony applications.
+
+## Armonic
+
+This package is part of [Armonic](https://softspring.es/en/armonic).
 
 ## Documentation
 
-* [1. Installation](docs/1_installation.md)
+[Armonic Documentation](https://armonic.softspring.es/latest/bundles/mailer-bundle)
+
+## Contributing
+
+Use the standard package commands before sending changes:
+
+```bash
+composer fix
+composer test
+composer test-bc
+```
+
+[Report issues](https://github.com/softspring/mailer-bundle/issues) and [send Pull Requests](https://github.com/softspring/mailer-bundle/pulls)
 
 ## License
 
