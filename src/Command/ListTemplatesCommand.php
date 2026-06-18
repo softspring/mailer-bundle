@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Softspring\MailerBundle\Command;
 
 use Softspring\MailerBundle\Template\Template;

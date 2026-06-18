@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Softspring\MailerBundle\DependencyInjection;
 
 use Softspring\MailerBundle\Entity\EmailHistory;

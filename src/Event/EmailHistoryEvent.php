@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Softspring\MailerBundle\Event;
 
 use Softspring\MailerBundle\Model\EmailHistoryInterface;
