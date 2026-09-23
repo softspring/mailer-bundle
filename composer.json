@@ -17,7 +17,8 @@
         "ergebnis/composer-normalize": "^2.50",
         "friendsofphp/php-cs-fixer": "^3.94",
         "phpstan/phpstan": "^2.1",
-        "rector/rector": "^2.3",
+        "rector/rector": "^2.6.7",
+        "symfony/polyfill-php85": "^1.33",
         "softspring/user-bundle": "^6.0@dev",
         "symfony/console": "^6.4 || ^7.4 || ^8.0",
         "symfony/framework-bundle": "^6.4 || ^7.4 || ^8.0",
@@ -50,14 +51,13 @@
     },
     "scripts": {
         "fix": [
-            "vendor/bin/rector process src tests",
+            "vendor/bin/rector process src",
             "vendor/bin/php-cs-fixer fix",
             "composer normalize"
         ],
         "run-tests": [
             "composer validate --strict --no-check-lock --ansi",
-            "# XDEBUG_MODE=coverage vendor/bin/phpunit",
-            "vendor/bin/rector process src tests --dry-run",
+            "vendor/bin/rector process src --dry-run",
             "vendor/bin/phpstan analyse src --level 5",
             "vendor/bin/php-cs-fixer fix --dry-run --diff",
             "vendor/bin/yaml-lint .github/ -vvv --parse-tags",
