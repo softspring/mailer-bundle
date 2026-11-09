@@ -9,6 +9,9 @@
 
 Shared mail template and preview infrastructure for Symfony applications.
 
+The `sfs_mailer:template:list` command loads its template providers only when executed.
+If an application overrides its service definition, keep the command name in the `console.command` tag so unrelated console commands do not load Doctrine metadata before cache warmup.
+
 ## Armonic
 
 This package is part of [Armonic](https://softspring.es/en/armonic).

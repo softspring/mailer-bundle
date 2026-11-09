@@ -24,7 +24,8 @@ services:
         tags: ['sfs_mailer.template_loader']
 
     Softspring\MailerBundle\Command\ListTemplatesCommand:
-        tags: ['console.command']
+        tags:
+            - { name: console.command, command: 'sfs_mailer:template:list' }
 
 #    Softspring\MailerBundle\Command\SendTemplateCommand:
 #        arguments:
