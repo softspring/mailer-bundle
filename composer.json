@@ -7,9 +7,9 @@
         "php": ">=8.4",
         "doctrine/doctrine-bundle": "^2.10 || ^3.0 || ^4.0",
         "doctrine/orm": "^2.10 || ^3.0 || ^4.0",
-        "softspring/components": "^6.0@dev",
-        "softspring/doctrine-target-entity-resolver": "^6.0@dev",
-        "softspring/mime-translatable": "^6.0@dev",
+        "softspring/components": "6.1.*@dev",
+        "softspring/doctrine-target-entity-resolver": "6.1.*@dev",
+        "softspring/mime-translatable": "6.1.*@dev",
         "symfony/form": "^6.4 || ^7.4 || ^8.0",
         "symfony/mailer": "^6.4 || ^7.4 || ^8.0"
     },
@@ -19,7 +19,7 @@
         "phpstan/phpstan": "^2.1",
         "rector/rector": "^2.6.7",
         "symfony/polyfill-php85": "^1.33",
-        "softspring/user-bundle": "^6.0@dev",
+        "softspring/user-bundle": "6.1.*@dev",
         "symfony/console": "^6.4 || ^7.4 || ^8.0",
         "symfony/framework-bundle": "^6.4 || ^7.4 || ^8.0",
         "symfony/translation": "^6.4 || ^7.4 || ^8.0",
@@ -46,7 +46,8 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-6.0": "6.0.x-dev"
+            "dev-6.0": "6.0.x-dev",
+            "dev-6.1": "6.1.x-dev"
         }
     },
     "scripts": {

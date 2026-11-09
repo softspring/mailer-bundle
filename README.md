@@ -5,7 +5,7 @@
 ![License](https://img.shields.io/packagist/l/softspring/mailer-bundle?style=flat-square)
 ![PHP Version](https://img.shields.io/packagist/dependency-v/softspring/mailer-bundle/php?style=flat-square)
 ![Downloads](https://img.shields.io/packagist/dt/softspring/mailer-bundle?style=flat-square)
-[![CI](https://img.shields.io/github/actions/workflow/status/softspring/mailer-bundle/ci.yml?branch=6.0&style=flat-square&label=CI)](https://github.com/softspring/mailer-bundle/actions/workflows/ci.yml)
+[![CI](https://img.shields.io/github/actions/workflow/status/softspring/mailer-bundle/ci.yml?branch=6.1&style=flat-square&label=CI)](https://github.com/softspring/mailer-bundle/actions/workflows/ci.yml)
 
 Shared mail template and preview infrastructure for Symfony applications.
 
@@ -15,7 +15,7 @@ This package is part of [Armonic](https://softspring.es/en/armonic).
 
 ## Documentation
 
-[Armonic Documentation](https://armonic.softspring.es/6.0/bundles/mailer-bundle)
+[Armonic Documentation](https://armonic.softspring.es/6.1@dev/bundles/mailer-bundle)
 
 ## Contributing
 
